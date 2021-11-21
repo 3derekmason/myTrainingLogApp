@@ -4,16 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./server/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/3derekmason/myTrainingLogApp.git"
-  },
-  "author": "",
+  "author": "SadieSpaceOrg",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/3derekmason/myTrainingLogApp/issues"
-  },
-  "homepage": "https://github.com/3derekmason/myTrainingLogApp#readme"
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-runtime": "^6.26.0",
+    "e": "^0.2.1",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1"
+  }
 }
