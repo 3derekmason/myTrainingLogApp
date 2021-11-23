@@ -1,27 +1,38 @@
 const express = require('express');
 
 const db = require('../db')
-
-const pool = require('../db/queries');
-
-//const Router = require('./routes.js');
+const logUsers = require('../db/userIndex');
 
 const app = express();
-
 app.use(express.json());
 
-//app.use(Router);
-
-app.get('/', (err, res) => {
-  if (err) {console.log('U Idiot')}
-  pool.query('SELECT * FROM users', (error, results) => {
-    if (error) {
-      throw error
-    }
-    res.status(200).json(results.rows)
+/*
+ * * * * * * * * REQUESTS TO logusers : users * * * * * * * *
+*/
+app.post('/users', (req, res) => {
+  const query = 'INSERT INTO users (username, email, date_joined) VALUES ($1, $2, $3)';
+  const username = req.body.username;
+  const email = req.body.email;
+  const date_joined = new Date();
+  logUsers.query(query, [username, email, date_joined], (err, results) => {
+    if (err) console.log(err);
+    res.status(201).send(`User,${username} given an axe`);
   })
 })
+app.get('/users', (req, res) => {
+  const query = 'SELECT * FROM users';
+  logUsers.query(query, (err, data) => {
+    if (err) console.log(err);
+    res.status(200).json(data.rows);
+  })
+})
+/*
+ * * * * * * * * REQUESTS TO woodshed : woodPile * * * * * * * *
+*/
 
+
+
+// * * * * * * * * Server Connection * * * * * * * *
 app.listen(1703, () => {
   console.log('Sharpening the axe...')
 });
