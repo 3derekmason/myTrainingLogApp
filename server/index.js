@@ -2,6 +2,8 @@ const express = require('express');
 
 const db = require('../db')
 
+const pool = require('../db/queries');
+
 //const Router = require('./routes.js');
 
 const app = express();
@@ -12,12 +14,11 @@ app.use(express.json());
 
 app.get('/', (err, res) => {
   if (err) {console.log('U Idiot')}
-
-  const workout = db.collection('woodPile');
-
-  workout.find({}).toArray((e, data) => {
-    if (e) throw e;
-    res.json(data);
+  pool.query('SELECT * FROM users', (error, results) => {
+    if (error) {
+      throw error
+    }
+    res.status(200).json(results.rows)
   })
 })
 
