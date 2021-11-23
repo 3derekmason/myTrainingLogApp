@@ -1,3 +1,4 @@
+
 const Pool = require('pg').Pool
 const logUsers = new Pool({
   user: 'derekmason',
@@ -8,3 +9,4 @@ const logUsers = new Pool({
 })
 
 module.exports = logUsers;
+
