@@ -68,8 +68,23 @@ app.get('/library/push', (req, res) => {
 /*
  * * * * * * * * REQUESTS TO logusers : pull_library * * * * * * * *
 */
-
-
+app.post('/library/pull', (req, res) => {
+  const query = 'INSERT INTO pull_library (exercise, area, isPrimary) VALUES ($1, $2, $3)';
+  const exercise = req.body.exercise;
+  const area = req.body.area;
+  const isPrimary = req.body.isPrimary;
+  logUsers.query(query, [exercise, area, isPrimary], (err, results) => {
+    if (err) console.log(err);
+    res.status(201).send(`Exercise, ${exercise} thown on the pull_library pile...`);
+  })
+})
+app.get('/library/pull', (req, res) => {
+  const query = 'SELECT * FROM pull_library';
+  logUsers.query(query, (err, data) => {
+    if (err) console.log(err);
+    res.status(200).json(data.rows);
+  })
+})
 // * * * * * * * * Server Connection * * * * * * * *
 app.listen(1703, () => {
   console.log('Sharpening the axe...')
