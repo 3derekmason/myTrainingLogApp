@@ -85,6 +85,19 @@ app.get('/library/pull', (req, res) => {
     res.status(200).json(data.rows);
   })
 })
+
+/*
+ * * * * * * * * REQUESTS TO woodshed : woodPile * * * * * * * *
+*/
+app.get('/woodpile', (req, res) => {
+  const database = db;
+  database.collection('woodPile').find({}).toArray((err, data) => {
+    if (err) throw err;
+    res.json(data);
+  })
+})
+
+
 // * * * * * * * * Server Connection * * * * * * * *
 app.listen(1703, () => {
   console.log('Sharpening the axe...')
