@@ -97,6 +97,16 @@ app.get('/woodpile', (req, res) => {
   })
 })
 
+// REQ QUERIES NEEDED : user_id, group
+app.post('/woodpile', (req, res) => {
+  const database = db;
+  const userID = Number(req.query.user_id);
+  const group = req.query.group;
+  const exercises = req.body;
+  db.collection('woodPile').insertOne({"user-id": userID, "group": group, "exercises": exercises});
+  res.status(201).send(`Workout for User ${userID} thrown on the log!`)
+})
+
 
 // * * * * * * * * Server Connection * * * * * * * *
 app.listen(1703, () => {

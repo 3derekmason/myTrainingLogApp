@@ -2,7 +2,7 @@
   {
   "workout_id": 1,
   "user_id": 1,
-  "date": "new Date()",
+  "date": "mm-dd-yyy",
   "group": "CARRY",
   "exercises": [
     {
