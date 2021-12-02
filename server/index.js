@@ -32,10 +32,11 @@ app.get('/users', (req, res) => {
  * * * * * * * * REQUESTS TO logusers : core_library * * * * * * * *
 */
 app.post('/library/core', (req, res) => {
-  const query = 'INSERT INTO core_library (exercise, equipment) VALUES ($1, $2)';
-  const exercise = req.body.exercise;
-  const equipment = req.body.equipment;
-  logUsers.query(query, [exercise, equipment], (err, results) => {
+  const query = 'INSERT INTO core_library (exercise, equipment, added_by) VALUES ($1, $2, $3)';
+  const exercise = req.body.exercise.toLowerCase();
+  const equipment = req.body.equipment.toLowerCase();
+  const addedBy = Number(req.body.added_by);
+  logUsers.query(query, [exercise, equipment, addedBy], (err, results) => {
     if (err) console.log(err);
     res.status(201).send(`Exercise, ${exercise} thown on the core_library pile...`);
   })
@@ -51,11 +52,12 @@ app.get('/library/core', (req, res) => {
  * * * * * * * * REQUESTS TO logusers : push_library * * * * * * * *
 */
 app.post('/library/push', (req, res) => {
-  const query = 'INSERT INTO push_library (exercise, area, isPrimary) VALUES ($1, $2, $3)';
-  const exercise = req.body.exercise;
-  const area = req.body.area;
+  const query = 'INSERT INTO push_library (exercise, area, is_primary, added_by) VALUES ($1, $2, $3, $4)';
+  const exercise = req.body.exercise.toLowerCase();
+  const area = req.body.area.toLowerCase();
   const isPrimary = req.body.isPrimary;
-  logUsers.query(query, [exercise, area, isPrimary], (err, results) => {
+  const added_by = Number(req.body.added_by)
+  logUsers.query(query, [exercise, area, isPrimary, added_by], (err, results) => {
     if (err) console.log(err);
     res.status(201).send(`Exercise, ${exercise} thown on the push_library pile...`);
   })
@@ -71,11 +73,12 @@ app.get('/library/push', (req, res) => {
  * * * * * * * * REQUESTS TO logusers : pull_library * * * * * * * *
 */
 app.post('/library/pull', (req, res) => {
-  const query = 'INSERT INTO pull_library (exercise, area, isPrimary) VALUES ($1, $2, $3)';
-  const exercise = req.body.exercise;
-  const area = req.body.area;
+  const query = 'INSERT INTO pull_library (exercise, area, is_primary, added_by) VALUES ($1, $2, $3, $4)';
+  const exercise = req.body.exercise.toLowerCase();
+  const area = req.body.area.toLowerCase();
   const isPrimary = req.body.isPrimary;
-  logUsers.query(query, [exercise, area, isPrimary], (err, results) => {
+  const added_by = Number(req.body.added_by)
+  logUsers.query(query, [exercise, area, isPrimary, added_by], (err, results) => {
     if (err) console.log(err);
     res.status(201).send(`Exercise, ${exercise} thown on the pull_library pile...`);
   })
