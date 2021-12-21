@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "startLog": "nodemon ./server/logIndex.js",
+    "woodshed": "nodemon ./server/logIndex.js",
     "pack": "webpack --config ./webpack.config.js --mode development -w"
   },
   "author": "SadieSpaceOrg",

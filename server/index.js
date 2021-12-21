@@ -108,10 +108,6 @@ app.get("/library/pull", (req, res) => {
   });
 });
 
-/*
- * * * * * * * * REQUESTS TO woodshed : woodPile * * * * * * * *
- */
-
 // * * * * * * * * Server Connection * * * * * * * *
 app.listen(1703, () => {
   console.log("Sharpening the axe...");

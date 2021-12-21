@@ -5,14 +5,18 @@ var { buildSchema } = require("graphql");
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
   type Query {
-    hello: String
+    test: String,
+    anotherTest: String
   }
 `);
 
 // The root provides a resolver function for each API endpoint
 var root = {
-  hello: () => {
-    return "Hello world!";
+  test: () => {
+    return "Testing connection setup!";
+  },
+  anotherTest: () => {
+    return "Different query successful";
   },
 };
 
@@ -26,4 +30,4 @@ app.use(
   })
 );
 app.listen(3333);
-console.log("Running a GraphQL API server at http://localhost:3333/graphql");
+console.log("Connected to the woodshed at http://localhost:3333/graphql");
