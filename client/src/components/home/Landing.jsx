@@ -8,6 +8,15 @@ const Landing = () => {
 
   const [formValues, setFormValues] = useState(defaultValues);
 
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = {
@@ -15,7 +24,7 @@ const Landing = () => {
       password: formValues.password,
     };
     setFormValues(defaultValues);
-    fetch("http:localhost:1703/users", {
+    fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,14 +43,24 @@ const Landing = () => {
   return (
     <div>
       <div>TRAINING LOG APP</div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Choose a Username:
-          <input type="text" name="username" />
+          <input
+            type="text"
+            name="username"
+            value={formValues.username}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Choose a Password:
-          <input type="text" name="password" />
+          <input
+            type="text"
+            name="password"
+            value={formValues.password}
+            onChange={handleInputChange}
+          />
         </label>
         <input type="submit" value="Submit" />
       </form>

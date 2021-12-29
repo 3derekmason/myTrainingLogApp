@@ -33,3 +33,5 @@ const saveNewUser = async (data) => {
 
   doc.save();
 };
+
+module.exports.saveNewUser = saveNewUser;
