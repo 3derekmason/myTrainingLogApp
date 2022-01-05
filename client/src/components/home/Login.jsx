@@ -1,4 +1,4 @@
-import { Button, Container, Typography, TextField } from "@material-ui/core";
+import { Button, Card, Typography, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 const Login = () => {
   return (
     <div className="loginPage">
-      <Container>
+      <Card className="loginContainer">
         <div className="loginHead">
           <Typography component="h1" variant="h3">
             My Training Log App
@@ -34,7 +34,7 @@ const Login = () => {
             <Typography component="h6" variant="caption">
               * required field
             </Typography>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" fullWidth>
               Log In
             </Button>
           </form>
@@ -48,7 +48,7 @@ const Login = () => {
             !
           </Typography>
         </div>
-      </Container>
+      </Card>
     </div>
   );
 };
