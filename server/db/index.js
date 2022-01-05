@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
   _id: ObjectID,
   userId: Number,
   username: String,
-  password: String,
+  pin: Number,
 });
 
 const User = mongoose.model("User", userSchema, "users");
