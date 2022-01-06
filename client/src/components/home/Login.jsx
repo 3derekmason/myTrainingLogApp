@@ -9,7 +9,7 @@ const Login = () => {
       <Card className="loginContainer">
         <div className="loginHead">
           <Typography component="h1" variant="h3">
-            My Training Log App
+            MTLA
           </Typography>
           <Typography component="h3" variant="h5">
             Log in to your log...
