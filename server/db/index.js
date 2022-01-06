@@ -29,7 +29,7 @@ const saveNewUser = async (data) => {
   doc._id = mongoose.Types.ObjectId();
   doc.userId = userId + 1;
   doc.username = data.username;
-  doc.password = data.password;
+  doc.pin = data.pin;
 
   doc.save();
 };
