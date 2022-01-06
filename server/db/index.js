@@ -18,6 +18,7 @@ const userSchema = mongoose.Schema({
   userId: Number,
   username: String,
   pin: Number,
+  loggedIn: Boolean,
 });
 
 const User = mongoose.model("User", userSchema, "users");
@@ -30,6 +31,7 @@ const saveNewUser = async (data) => {
   doc.userId = userId + 1;
   doc.username = data.username;
   doc.pin = data.pin;
+  doc.loggedIn = true;
 
   doc.save();
 };

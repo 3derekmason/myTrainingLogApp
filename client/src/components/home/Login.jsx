@@ -4,6 +4,31 @@ import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 const Login = () => {
+  const defaultValues = {
+    username: "",
+    pin: "",
+  };
+
+  const [formValues, setFormValues] = useState(defaultValues);
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const user = {
+      username: formValues.username,
+      pin: formValues.pin,
+    };
+    console.log(user);
+  };
+
   return (
     <div className="loginPage">
       <Card className="loginContainer">
@@ -16,25 +41,29 @@ const Login = () => {
           </Typography>
         </div>
         <div className="loginForm">
-          <form>
+          <form onSubmit={handleLogin}>
             <TextField
               required
-              id="outlined-required"
+              id="username"
+              name="username"
               label="Username"
-              defaultValue=""
               variant="outlined"
+              value={formValues.username}
+              onChange={handleInputChange}
             />
             <TextField
-              id="outlined-password-input"
-              label="Password  *"
+              id="password"
+              name="pin"
+              label="Pin  *"
               type="password"
-              autoComplete="current-password"
               variant="outlined"
+              value={formValues.pin}
+              onChange={handleInputChange}
             />
             <Typography component="h6" variant="caption">
               * required field
             </Typography>
-            <Button variant="contained" color="primary" fullWidth>
+            <Button variant="contained" color="primary" type="submit" fullWidth>
               Log In
             </Button>
           </form>
