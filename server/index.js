@@ -1,7 +1,9 @@
 const express = require("express");
 const path = require("path");
 const router = require("./routes");
-const db = require("./db/index.js");
+const mongoose = require("mongoose");
+const { ObjectID } = require("mongodb/node_modules/bson");
+const bcrypt = require("bcryptjs");
 
 const app = express();
 app.use(express.json());

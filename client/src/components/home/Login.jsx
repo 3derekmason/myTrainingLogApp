@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 const Login = () => {
   const defaultValues = {
     username: "",
-    pin: "",
+    password: "",
   };
 
   const [formValues, setFormValues] = useState(defaultValues);
@@ -24,9 +24,24 @@ const Login = () => {
     e.preventDefault();
     const user = {
       username: formValues.username,
-      pin: formValues.pin,
+      password: formValues.password,
     };
-    console.log(user);
+    fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    setFormValues(defaultValues);
   };
 
   return (
@@ -53,11 +68,11 @@ const Login = () => {
             />
             <TextField
               id="password"
-              name="pin"
-              label="Pin  *"
+              name="password"
+              label="Password  *"
               type="password"
               variant="outlined"
-              value={formValues.pin}
+              value={formValues.password}
               onChange={handleInputChange}
             />
             <Typography component="h6" variant="caption">
