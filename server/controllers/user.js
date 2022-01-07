@@ -8,12 +8,6 @@ mongoose.connect("mongodb://localhost:27017/mtla", {
   useUnifiedTopology: true,
 });
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error"));
-db.once("open", () => {
-  console.log("connected successfully");
-});
-
 const UserSchema = mongoose.Schema({
   _id: ObjectID,
   userId: Number,
