@@ -20,7 +20,7 @@ const Landing = () => {
     setCurrentDate(currentDate.split(" at ")[0]);
   }, [currentUser, currentDate]);
 
-  if (!currentUser) {
+  if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
 
@@ -50,7 +50,11 @@ const Landing = () => {
             {currentDate}
           </Typography>
         </div>
-        <div className="landingPaths"></div>
+        <div className="landingPaths">
+          <Link to="/">
+            <Button>TESTING</Button>
+          </Link>
+        </div>
         <div className="landingFoot"></div>
       </Card>
     </div>
