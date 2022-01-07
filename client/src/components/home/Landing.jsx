@@ -6,7 +6,7 @@ const Landing = () => {
   return (
     <div>
       <div>TRAINING LOG APP</div>
-      <Link to="/login" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <Button size="large">Log In</Button>
       </Link>
       <Link to="/signup" style={{ textDecoration: "none" }}>

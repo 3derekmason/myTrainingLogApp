@@ -10,6 +10,7 @@ const Login = () => {
   };
 
   const [formValues, setFormValues] = useState(defaultValues);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        setLoggedIn(true);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -43,6 +45,10 @@ const Login = () => {
 
     setFormValues(defaultValues);
   };
+
+  if (loggedIn) {
+    return <Navigate to="/landing" />;
+  }
 
   return (
     <div className="loginPage">
