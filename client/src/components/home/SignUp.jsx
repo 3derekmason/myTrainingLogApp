@@ -1,8 +1,10 @@
 import { Button, Card, Link, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
+import AppContext from "../context.js";
 
 const SignUp = () => {
+  const { currentUser, setCurrentUser } = useContext(AppContext);
   const defaultValues = {
     username: "",
     password: "",
@@ -10,6 +12,7 @@ const SignUp = () => {
   };
 
   const [formValues, setFormValues] = useState(defaultValues);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -41,7 +44,8 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        setCurrentUser(data);
+        setLoggedIn(true);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -49,6 +53,10 @@ const SignUp = () => {
 
     setFormValues(defaultValues);
   };
+
+  if (loggedIn) {
+    return <Navigate to="/landing" />;
+  }
 
   return (
     <div className="signupPage">
