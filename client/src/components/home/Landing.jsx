@@ -17,9 +17,7 @@ const Landing = () => {
     if (!currentDate) {
       console.log("nope");
     }
-
     setCurrentDate(currentDate.split(" at ")[0]);
-    console.log(currentDate);
   }, [currentUser, currentDate]);
 
   if (!currentUser) {
