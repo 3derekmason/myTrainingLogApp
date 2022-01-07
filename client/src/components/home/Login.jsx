@@ -1,9 +1,11 @@
 import { Button, Card, Typography, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import AppContext from "../context.js";
 
 const Login = () => {
+  const { currentUser, setCurrentUser } = useContext(AppContext);
   const defaultValues = {
     username: "",
     password: "",
@@ -36,7 +38,7 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        setCurrentUser(data);
         setLoggedIn(true);
       })
       .catch((error) => {

@@ -62,9 +62,7 @@ module.exports = {
           return res.status(400).send({ message: "The password is invalid" });
         }
       });
-      res.send({
-        message: "The username and password combination is correct!",
-      });
+      res.send(user);
     } catch (error) {
       res.status(500).send(error);
     }
