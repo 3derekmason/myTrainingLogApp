@@ -5,8 +5,8 @@ import { Navigate } from "react-router-dom";
 const SignUp = () => {
   const defaultValues = {
     username: "",
-    pin: "",
-    confirmPin: "",
+    password: "",
+    confirmPassword: "",
   };
 
   const [formValues, setFormValues] = useState(defaultValues);
@@ -23,16 +23,16 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formValues.pin !== formValues.confirmPin) {
-      alert("Pins must match!");
+    if (formValues.password !== formValues.confirmPassword) {
+      alert("Passwords must match!");
       setFormValues(defaultValues);
       return;
     }
     const newUserData = {
       username: formValues.username,
-      pin: Number(formValues.pin),
+      password: formValues.password,
     };
-    fetch("/api/users", {
+    fetch("/api/users/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,21 +70,21 @@ const SignUp = () => {
               onChange={handleInputChange}
             />
             <TextField
-              id="pin"
-              name="pin"
-              label="4-Digit Pin  *"
+              id="password"
+              name="password"
+              label="Password *"
               type="password"
               variant="outlined"
-              value={formValues.pin}
+              value={formValues.password}
               onChange={handleInputChange}
             />
             <TextField
-              id="confirmPin"
-              name="confirmPin"
-              label="Confirm Pin  *"
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm Password  *"
               type="password"
               variant="outlined"
-              value={formValues.confirmPin}
+              value={formValues.confirmPassword}
               onChange={handleInputChange}
             />
             <Typography component="h6" variant="caption">

@@ -1,9 +1,57 @@
 import { Button, Card, Typography, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import AppContext from "../context.js";
 
 const Login = () => {
+  const { currentUser, setCurrentUser } = useContext(AppContext);
+  const defaultValues = {
+    username: "",
+    password: "",
+  };
+
+  const [formValues, setFormValues] = useState(defaultValues);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const user = {
+      username: formValues.username,
+      password: formValues.password,
+    };
+    fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCurrentUser(data);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    setFormValues(defaultValues);
+  };
+
+  if (loggedIn) {
+    return <Navigate to="/landing" />;
+  }
+
   return (
     <div className="loginPage">
       <Card className="loginContainer">
@@ -16,25 +64,29 @@ const Login = () => {
           </Typography>
         </div>
         <div className="loginForm">
-          <form>
+          <form onSubmit={handleLogin}>
             <TextField
               required
-              id="outlined-required"
+              id="username"
+              name="username"
               label="Username"
-              defaultValue=""
               variant="outlined"
+              value={formValues.username}
+              onChange={handleInputChange}
             />
             <TextField
-              id="outlined-password-input"
+              id="password"
+              name="password"
               label="Password  *"
               type="password"
-              autoComplete="current-password"
               variant="outlined"
+              value={formValues.password}
+              onChange={handleInputChange}
             />
             <Typography component="h6" variant="caption">
               * required field
             </Typography>
-            <Button variant="contained" color="primary" fullWidth>
+            <Button variant="contained" color="primary" type="submit" fullWidth>
               Log In
             </Button>
           </form>
