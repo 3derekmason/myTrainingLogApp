@@ -1,10 +1,17 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-mongoose.connect("mongodb://localhost:27017/mtla", {
+// for local development
+
+// mongoose.connect("mongodb://[]", {
+//   useNewUrlParser: true,
+//   useFindAndModify: false,
+//   useUnifiedTopology: true,
+// });
+
+// for heroku
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/mtla", {
   useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
 });
 
 const UserSchema = mongoose.Schema({

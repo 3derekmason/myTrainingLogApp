@@ -29,7 +29,7 @@ const Login = () => {
       username: formValues.username,
       password: formValues.password,
     };
-    fetch("mytraininglog.herokuapp.com/api/users/login", {
+    fetch("/api/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
