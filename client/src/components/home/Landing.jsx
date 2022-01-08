@@ -60,7 +60,7 @@ const Landing = () => {
       <Card className="landingContainer">
         <div className="landingHead">
           <Typography element="h3" variant="h5">
-            Welcome, {currentUser.username}!
+            Welcome, {currentUser?.username}!
           </Typography>
           <Typography element="h5" variant="caption">
             {currentDate}
