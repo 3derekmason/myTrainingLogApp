@@ -54,3 +54,26 @@ body {
 .loginFoot {
   display: flex;
 }
+
+/* UserLog Componenet */
+
+.workoutLogCard {
+  display: flex;
+  gap: 16px;
+  font-variant: small-caps;
+}
+
+.logCardLeft {
+  display: flex;
+  flex-direction: column;
+}
+.logCardRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.logExercise ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}

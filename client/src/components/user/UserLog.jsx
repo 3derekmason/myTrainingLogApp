@@ -44,35 +44,46 @@ const UserLog = () => {
         </Toolbar>
       </AppBar>
       <Container maxWidth="sm">
-        <div className="userLogTopBar"></div>
-        <Typography element="h3" variand="h3">
-          {currentUser?.username}'s Log
-        </Typography>
+        <div className="userLogTopBar">
+          <Typography element="h3" variand="h3">
+            {currentUser?.username}'s Log
+          </Typography>
+        </div>
 
         {/* Begin Triple Map */}
         {userWorkouts?.map((workout, i) => {
           let splitDate = workout?.date.split("T")[0];
           let formatDate = splitDate.split("-");
           return (
-            <Card key={i}>
-              {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
-              {workout?.type}
-              {Object.keys(workout?.exercises).map((exercise, i) => {
-                return (
-                  <div className="logExercise" key={i}>
-                    {exercise}
-                    <ul>
-                      {workout.exercises[exercise].sets.map((set, i) => {
-                        return (
-                          <li key={i}>
-                            {set[0]} reps at {set[1]}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                );
-              })}
+            <Card className="workoutLogCard" key={i}>
+              <div className="logCardLeft">
+                <Typography element="h5" variant="h5">
+                  {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
+                </Typography>
+                <Typography element="h5" variant="subtitle">
+                  {workout?.type}
+                </Typography>
+              </div>
+              <div className="logCardRight">
+                {Object.keys(workout?.exercises).map((exercise, i) => {
+                  return (
+                    <div className="logExercise" key={i}>
+                      <Typography element="h6" variant="h6">
+                        {exercise}
+                      </Typography>
+                      <ul>
+                        {workout.exercises[exercise].sets.map((set, i) => {
+                          return (
+                            <li key={i}>
+                              {set[0]} reps at {set[1]}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
             </Card>
           );
         })}
