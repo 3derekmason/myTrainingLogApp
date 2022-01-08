@@ -20,8 +20,9 @@ const Workout = mongoose.model("Workout", WorkoutSchema, "workouts");
 module.exports = {
   getUserWorkouts: async (req, res) => {
     try {
-      const id = req.query.userId;
+      const id = Number(req.query.userId);
       const workouts = await Workout.find({ userId: id });
+      res.send(workouts);
     } catch (e) {
       res.status(500).send(e);
     }
