@@ -45,10 +45,14 @@ const UserLog = () => {
       </AppBar>
       <Container maxWidth="sm">
         <div className="userLogTopBar"></div>
+        <Typography element="h3" variand="h3">
+          {currentUser?.username}'s Log
+        </Typography>
+
+        {/* Begin Triple Map */}
         {userWorkouts?.map((workout, i) => {
           let splitDate = workout?.date.split("T")[0];
           let formatDate = splitDate.split("-");
-
           return (
             <Card key={i}>
               {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
