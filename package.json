@@ -9,7 +9,8 @@
   "scripts": {
     "start": "nodemon ./server/index.js",
     "pack": "webpack --config ./webpack.config.js --mode development -w",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION= false  npm install && npm run pack"
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run pack"
   },
   "author": "SadieSpaceOrg",
   "license": "ISC",
