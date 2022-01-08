@@ -46,9 +46,12 @@ const UserLog = () => {
       <Container maxWidth="sm">
         <div className="userLogTopBar"></div>
         {userWorkouts?.map((workout, i) => {
+          let splitDate = workout?.date.split("T")[0];
+          let formatDate = splitDate.split("-");
+
           return (
             <Card key={i}>
-              {workout?.date}
+              {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
               {workout?.type}
               {Object.keys(workout?.exercises).map((exercise, i) => {
                 return (
