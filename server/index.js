@@ -17,7 +17,8 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/public/index.html"));
 });
 
+const PORT = process.env.PORT || 1703;
 // * * * * * * * * Server Connection * * * * * * * *
-app.listen(1703, () => {
+app.listen(PORT, () => {
   console.log("Sharpening the axe...");
 });
