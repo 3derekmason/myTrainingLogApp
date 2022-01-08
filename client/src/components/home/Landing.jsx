@@ -6,6 +6,7 @@ import AppContext from "../context.js";
 
 const Landing = () => {
   const { currentUser, setCurrentUser } = React.useContext(AppContext);
+  const [userWorkouts, setUserWorkouts] = useState();
   const [currentDate, setCurrentDate] = useState(
     new Intl.DateTimeFormat("en-GB", {
       dateStyle: "full",
@@ -13,10 +14,22 @@ const Landing = () => {
     }).format(new Date())
   );
 
+  const getWorkouts = (filterId) => {
+    fetch(`/api/workouts/?userId=${filterId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserWorkouts(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    if (!currentDate) {
+    if (!currentDate || !currentUser) {
       console.log("nope");
     }
+    getWorkouts(currentUser.userId);
     setCurrentDate(currentDate.split(" at ")[0]);
   }, [currentUser, currentDate]);
 
@@ -51,9 +64,14 @@ const Landing = () => {
           </Typography>
         </div>
         <div className="landingPaths">
-          <Link to="/">
-            <Button>TESTING</Button>
-          </Link>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(userWorkouts);
+            }}
+          >
+            TESTING
+          </Button>
         </div>
         <div className="landingFoot"></div>
       </Card>
