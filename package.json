@@ -8,8 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "build": "webpack --config ./webpack.config.js --mode development -w",
-    "heroku-postbuild": "npm install && npm run build"
+    "pack": "webpack --config ./webpack.config.js --mode development -w",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION= false  npm install && npm run pack"
   },
   "author": "SadieSpaceOrg",
   "license": "ISC",
