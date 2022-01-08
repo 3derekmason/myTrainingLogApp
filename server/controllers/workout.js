@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { ObjectID } = require("mongodb/node_modules/bson");
 
 mongoose.connect("mongodb://localhost:27017/mtla", {
   useNewUrlParser: true,
@@ -8,7 +7,7 @@ mongoose.connect("mongodb://localhost:27017/mtla", {
 });
 
 const WorkoutSchema = mongoose.Schema({
-  _id: ObjectID,
+  _id: mongoose.ObjectId,
   userId: Number,
   date: Date,
   type: String,

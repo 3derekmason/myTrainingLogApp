@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { ObjectID } = require("mongodb/node_modules/bson");
 const bcrypt = require("bcryptjs");
 
 mongoose.connect("mongodb://localhost:27017/mtla", {
@@ -9,7 +8,7 @@ mongoose.connect("mongodb://localhost:27017/mtla", {
 });
 
 const UserSchema = mongoose.Schema({
-  _id: ObjectID,
+  _id: mongoose.ObjectId,
   userId: Number,
   username: String,
   password: String,
