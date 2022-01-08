@@ -1,27 +1,62 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Navigate } from "react-router-dom";
+import { AppBar, Button, Card, Toolbar, Typography } from "@material-ui/core";
 import AppContext from "../context.js";
 
 const Landing = () => {
-  const { currentUser } = React.useContext(AppContext);
+  const { currentUser, setCurrentUser } = React.useContext(AppContext);
+  const [currentDate, setCurrentDate] = useState(
+    new Intl.DateTimeFormat("en-GB", {
+      dateStyle: "full",
+      timeStyle: "long",
+    }).format(new Date())
+  );
+
+  useEffect(() => {
+    if (!currentDate) {
+      console.log("nope");
+    }
+    setCurrentDate(currentDate.split(" at ")[0]);
+  }, [currentUser, currentDate]);
+
+  if (!currentUser || currentUser.message) {
+    return <Navigate to="/" />;
+  }
+
   return (
-    <div>
-      <div>TRAINING LOG APP</div>
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <Button size="large">Log In</Button>
-      </Link>
-      <Link to="/signup" style={{ textDecoration: "none" }}>
-        <Button size="large">Sign Up</Button>
-      </Link>
-      <Button
-        onClick={(e) => {
-          e.preventDefault();
-          console.log(currentUser);
-        }}
-      >
-        Test
-      </Button>
+    <div className="landingPage">
+      <AppBar position="static">
+        <Toolbar>
+          <Typography element="h5" variant="h5">
+            [] MTLA
+          </Typography>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentUser(null);
+            }}
+          >
+            LOGOUT
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Card className="landingContainer">
+        <div className="landingHead">
+          <Typography element="h3" variant="h5">
+            Welcome, {currentUser.username}!
+          </Typography>
+          <Typography element="h5" variant="caption">
+            {currentDate}
+          </Typography>
+        </div>
+        <div className="landingPaths">
+          <Link to="/">
+            <Button>TESTING</Button>
+          </Link>
+        </div>
+        <div className="landingFoot"></div>
+      </Card>
     </div>
   );
 };
