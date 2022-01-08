@@ -16,7 +16,7 @@ const Landing = () => {
   );
 
   const getWorkouts = (filterId) => {
-    fetch(`/api/workouts/?userId=${filterId}`)
+    fetch(`mytraininglogapp.herokuapp.com/api/workouts/?userId=${filterId}`)
       .then((res) => res.json())
       .then((data) => {
         setUserWorkouts(data);
