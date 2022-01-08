@@ -5,8 +5,9 @@ import { AppBar, Button, Card, Toolbar, Typography } from "@material-ui/core";
 import AppContext from "../context.js";
 
 const Landing = () => {
-  const { currentUser, setCurrentUser } = React.useContext(AppContext);
-  const [userWorkouts, setUserWorkouts] = useState();
+  const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
+    React.useContext(AppContext);
+  const [openUserLog, setOpenUserLog] = useState(false);
   const [currentDate, setCurrentDate] = useState(
     new Intl.DateTimeFormat("en-GB", {
       dateStyle: "full",
@@ -36,7 +37,9 @@ const Landing = () => {
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
-
+  if (openUserLog) {
+    return <Navigate to="/userlog" />;
+  }
   return (
     <div className="landingPage">
       <AppBar position="static">
@@ -67,10 +70,10 @@ const Landing = () => {
           <Button
             onClick={(e) => {
               e.preventDefault();
-              console.log(userWorkouts);
+              setOpenUserLog(true);
             }}
           >
-            TESTING
+            USER LOG
           </Button>
         </div>
         <div className="landingFoot"></div>
