@@ -27,9 +27,9 @@ const Landing = () => {
 
   useEffect(() => {
     if (!currentDate || !currentUser) {
-      console.log("nope");
+      return;
     }
-    getWorkouts(currentUser.userId);
+    getWorkouts(currentUser?.userId);
     setCurrentDate(currentDate.split(" at ")[0]);
   }, [currentUser, currentDate]);
 
