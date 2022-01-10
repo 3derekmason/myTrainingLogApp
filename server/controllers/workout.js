@@ -26,4 +26,17 @@ module.exports = {
       res.status(500).send(e);
     }
   },
+  addWorkout: async (req, res) => {
+    try {
+      const doc = new Workout();
+      doc._id = mongoose.Types.ObjectId();
+      doc.userId = req.body.userId;
+      doc.type = req.body.type;
+      doc.exercises = req.body.exercises;
+      doc.save();
+      res.status(201).send(doc);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  },
 };
