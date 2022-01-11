@@ -11,7 +11,7 @@ const WorkoutSchema = mongoose.Schema({
   userId: Number,
   date: Date,
   type: String,
-  exercises: {},
+  exercises: [],
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema, "workouts");
