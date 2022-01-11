@@ -7,6 +7,7 @@ import SignUp from "./home/SignUp.jsx";
 import UserLog from "./user/UserLog.jsx";
 
 import AppContext from "./context.js";
+import AddWorkout from "./main/AddWorkout.jsx";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/landing" element={<Landing />} />
           <Route path="/userlog" element={<UserLog />} />
+          <Route path="/addworkout" element={<AddWorkout />} />
         </Routes>
       </Router>
     </AppContext.Provider>
