@@ -30,9 +30,13 @@ const AddWorkout = () => {
   const [workoutType, setWorkoutType] = useState("");
 
   // Construct each set for each exercise to be added
+  const [newExerciseName, setNewExerciseName] = useState("");
+  const [newExerciseSuperset, setNewExerciseSuperset] = useState(false);
   const [newSetReps, setNewSetReps] = useState("");
   const [newSetWeight, setNewSetWeight] = useState("");
+
   const [newExerciseSets, setNewExerciseSets] = useState([]);
+  const [exercises, setExercises] = useState([]);
 
   // Modal controls, helpers etc...
   const [exerciseOpen, setExerciseOpen] = useState(false);
@@ -55,6 +59,23 @@ const AddWorkout = () => {
     console.log(newExerciseSets);
   };
 
+  const addExerciseToWorkout = (e) => {
+    e.preventDefault();
+    const newExercises = exercises;
+    const exerciseToAdd = {
+      [newExerciseName]: {
+        sets: newExerciseSets,
+        superset: newExerciseSuperset,
+      },
+    };
+    newExercises.push(exerciseToAdd);
+    setExercises(newExercises);
+    setNewExerciseName("");
+    setNewExerciseSets([]);
+    setNewExerciseSuperset(false);
+    console.log(exercises);
+  };
+
   const handleSetRepsChange = (e) => {
     e.preventDefault();
     setNewSetReps(e.target.value);
@@ -63,7 +84,6 @@ const AddWorkout = () => {
     e.preventDefault();
     setNewSetWeight(e.target.value);
   };
-
   // Workout form helpers
 
   const handleTypeChange = (e) => {
@@ -157,6 +177,11 @@ const AddWorkout = () => {
                   label="Exercise Name"
                   variant="standard"
                   style={{ width: "90%" }}
+                  value={newExerciseName}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setNewExerciseName(e.target.value);
+                  }}
                 />
                 <div
                   style={{
@@ -208,6 +233,7 @@ const AddWorkout = () => {
                   variant="outlined"
                   color="secondary"
                   style={{ marginBottom: "24px" }}
+                  onClick={addExerciseToWorkout}
                 >
                   Add Exercise
                 </Button>
