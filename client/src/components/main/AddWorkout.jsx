@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Card,
+  IconButton,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -78,6 +79,12 @@ const AddWorkout = () => {
             </Select>
             <FormHelperText>Training Style</FormHelperText>
           </FormControl>
+          <div className="addExerciseHead">
+            <Typography element="h4" variant="h5">
+              Exercises:
+            </Typography>
+            <Button variant="text">Add</Button>
+          </div>
         </div>
         <div className="addWorkoutFoot"></div>
       </Card>
