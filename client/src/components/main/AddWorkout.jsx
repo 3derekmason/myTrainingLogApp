@@ -38,9 +38,6 @@ const AddWorkout = () => {
   const [newExerciseSets, setNewExerciseSets] = useState([]);
   const [exercises, setExercises] = useState([]);
 
-  const [newWorkoutDate, setNewWorkoutDate] = useState();
-  const [newWorkoutType, setNewWorkoutType] = useState();
-
   // Modal controls, helpers etc...
   const [exerciseOpen, setExerciseOpen] = useState(false);
   const handleExerciseOpen = () => setExerciseOpen(true);
@@ -91,6 +88,7 @@ const AddWorkout = () => {
 
   const handleTypeChange = (e) => {
     e.preventDefault();
+    console.log(e.target.value);
     setWorkoutType(e.target.value);
   };
 
@@ -98,9 +96,24 @@ const AddWorkout = () => {
     e.preventDefault();
     const newWorkout = {
       userId: currentUser.userId,
+      date: workoutDate,
+      type: workoutType,
       exercises: exercises,
     };
-    console.log(newWorkout);
+    fetch("/api/workouts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newWorkout),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   // Update add sets modal with number of sets stored
