@@ -27,8 +27,10 @@ const AddWorkout = () => {
 
   const [workoutDate, setWorkoutDate] = useState(new Date());
   const [workoutType, setWorkoutType] = useState("");
+  const [newSetReps, setNewSetReps] = useState("");
+  const [newSetWeight, setNewSetWeight] = useState("");
+  const [newExerciseSets, setNewExerciseSets] = useState([]);
   const [exerciseOpen, setExerciseOpen] = useState(false);
-
   const handleExerciseOpen = () => setExerciseOpen(true);
   const handleExerciseClose = () => setExerciseOpen(false);
 
@@ -36,6 +38,28 @@ const AddWorkout = () => {
     e.preventDefault();
     setWorkoutType(e.target.value);
   };
+  const handleSetRepsChange = (e) => {
+    e.preventDefault();
+    setNewSetReps(e.target.value);
+  };
+  const handleSetWeightChange = (e) => {
+    e.preventDefault();
+    setNewSetWeight(e.target.value);
+  };
+
+  const addNewSet = (e) => {
+    e.preventDefault();
+    const newSet = [Number(newSetReps), Number(newSetWeight)];
+    const newSets = newExerciseSets;
+    newSets.push(newSet);
+    setNewSetReps("");
+    setNewSetWeight("");
+    setNewExerciseSets(newSets);
+
+    console.log(newExerciseSets);
+  };
+
+  useEffect(() => {}, [newExerciseSets]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -102,19 +126,31 @@ const AddWorkout = () => {
               <Typography id="exerciseModalTitle" variant="h6" component="h2">
                 Add Exercise
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Add an exercise. Name, superset, sets, reps, and weight
-              </Typography>
-              <form style={{ display: "flex", flexDirection: "column" }}>
+              <form
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
                 <TextField
                   id="exerciseName"
                   label="Exercise Name"
                   variant="standard"
+                  style={{ width: "90%" }}
                 />
-                <Typography element="h5" variant="caption">
-                  Superset with previous?
-                </Typography>
-                <Checkbox aria-label="Checkbox demo" />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography element="h5" variant="caption">
+                    Superset with previous?
+                  </Typography>
+                  <Checkbox aria-label="superset" />
+                </div>
                 <Card className="exerciseSetsCard">
                   <div className="cardHead">
                     <Typography element="h3" variant="subtitle1">
@@ -127,6 +163,27 @@ const AddWorkout = () => {
                       Weight
                     </Typography>
                   </div>
+                  <div className="cardHead">
+                    <Typography element="h6" variant="subtitle1">
+                      {newExerciseSets.length + 1}
+                    </Typography>
+                    <TextField
+                      id="newSetReps"
+                      variant="outlined"
+                      className="setRW"
+                      value={newSetReps}
+                      onChange={handleSetRepsChange}
+                    />
+                    <TextField
+                      id="newSetWeight"
+                      variant="outlined"
+                      className="setRW"
+                      value={newSetWeight}
+                      onChange={handleSetWeightChange}
+                    />
+                  </div>
+
+                  <Button onClick={addNewSet}>Add Set</Button>
                 </Card>
               </form>
             </Box>
