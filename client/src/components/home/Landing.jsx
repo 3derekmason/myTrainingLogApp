@@ -75,6 +75,9 @@ const Landing = () => {
           >
             USER LOG
           </Button>
+          <Link to="/addworkout">
+            <Button>ADD WORKOUT</Button>
+          </Link>
         </div>
         <div className="landingFoot"></div>
       </Card>
