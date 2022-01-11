@@ -60,7 +60,7 @@ const UserLog = () => {
                 <Typography element="h5" variant="h5">
                   {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
                 </Typography>
-                <Typography element="h5" variant="subtitle">
+                <Typography element="h5" variant="subtitle1">
                   {workout?.type}
                 </Typography>
               </div>
