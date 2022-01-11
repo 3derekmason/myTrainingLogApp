@@ -25,27 +25,19 @@ const AddWorkout = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
     React.useContext(AppContext);
 
+  // properties to match database schema for post
   const [workoutDate, setWorkoutDate] = useState(new Date());
   const [workoutType, setWorkoutType] = useState("");
+
+  // Construct each set for each exercise to be added
   const [newSetReps, setNewSetReps] = useState("");
   const [newSetWeight, setNewSetWeight] = useState("");
   const [newExerciseSets, setNewExerciseSets] = useState([]);
+
+  // Modal controls, helpers etc...
   const [exerciseOpen, setExerciseOpen] = useState(false);
   const handleExerciseOpen = () => setExerciseOpen(true);
   const handleExerciseClose = () => setExerciseOpen(false);
-
-  const handleTypeChange = (e) => {
-    e.preventDefault();
-    setWorkoutType(e.target.value);
-  };
-  const handleSetRepsChange = (e) => {
-    e.preventDefault();
-    setNewSetReps(e.target.value);
-  };
-  const handleSetWeightChange = (e) => {
-    e.preventDefault();
-    setNewSetWeight(e.target.value);
-  };
 
   const addNewSet = (e) => {
     e.preventDefault();
@@ -63,6 +55,23 @@ const AddWorkout = () => {
     console.log(newExerciseSets);
   };
 
+  const handleSetRepsChange = (e) => {
+    e.preventDefault();
+    setNewSetReps(e.target.value);
+  };
+  const handleSetWeightChange = (e) => {
+    e.preventDefault();
+    setNewSetWeight(e.target.value);
+  };
+
+  // Workout form helpers
+
+  const handleTypeChange = (e) => {
+    e.preventDefault();
+    setWorkoutType(e.target.value);
+  };
+
+  // Update add sets modal with number of sets stored
   useEffect(() => {}, [newExerciseSets]);
 
   if (!currentUser || currentUser.message) {
@@ -92,12 +101,13 @@ const AddWorkout = () => {
             Log a workout!
           </Typography>
         </div>
+        {/* * * * * * SET WORKOUT DATE * * * * */}
         <div className="addWorkoutForm">
           <ReactDatePicker
             selected={workoutDate}
             onChange={(date) => setWorkoutDate(date)}
           />
-
+          {/* * * * * * SET WORKOUT TYPE * * * * */}
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="typeLabel">Type</InputLabel>
             <Select
@@ -110,9 +120,13 @@ const AddWorkout = () => {
               <MenuItem value={"push"}>Push</MenuItem>
               <MenuItem value={"pull"}>Pull</MenuItem>
               <MenuItem value={"core"}>Core</MenuItem>
+              <MenuItem value={"mob"}>Mobility</MenuItem>
+              <MenuItem value={"stab"}>Stability</MenuItem>
+              <MenuItem value={"cardio"}>Cardio</MenuItem>
             </Select>
             <FormHelperText>Training Style</FormHelperText>
           </FormControl>
+          {/* * * * * ADD EACH EXERCISE * * * * */}
           <div className="addExerciseHead">
             <Typography element="h4" variant="h5">
               Exercises:
@@ -126,6 +140,7 @@ const AddWorkout = () => {
             onClose={handleExerciseClose}
             aria-labelledby="addExerciseModal"
           >
+            {/* * * * * * * MODAL FOR EXERCISE * * * * * */}
             <Box className="addExerciseModal">
               <Typography id="exerciseModalTitle" variant="h6" component="h2">
                 Add Exercise
@@ -199,6 +214,7 @@ const AddWorkout = () => {
               </form>
             </Box>
           </Modal>
+          <Button fullWidth>ADD TO LOG</Button>
         </div>
         <div className="addWorkoutFoot"></div>
       </Card>
