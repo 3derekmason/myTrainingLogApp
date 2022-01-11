@@ -52,8 +52,8 @@ const UserLog = () => {
 
         {/* Begin Triple Map */}
         {userWorkouts?.map((workout, i) => {
-          let splitDate = workout?.date.split("T")[0];
-          let formatDate = splitDate.split("-");
+          let splitDate = workout?.date?.split("T")[0];
+          let formatDate = splitDate?.split("-");
           return (
             <Card className="workoutLogCard" key={i}>
               <div className="logCardLeft">
@@ -65,20 +65,22 @@ const UserLog = () => {
                 </Typography>
               </div>
               <div className="logCardRight">
-                {Object.keys(workout?.exercises).map((exercise, i) => {
+                {workout?.exercises.map((exercise, i) => {
                   return (
                     <div className="logExercise" key={i}>
                       <Typography element="h6" variant="h6">
-                        {exercise}
+                        {Object.keys(exercise)[0]}
                       </Typography>
                       <ul>
-                        {workout.exercises[exercise].sets.map((set, i) => {
-                          return (
-                            <li key={i}>
-                              {set[0]} reps at {set[1]}
-                            </li>
-                          );
-                        })}
+                        {exercise[Object.keys(exercise)[0]].sets.map(
+                          (set, i) => {
+                            return (
+                              <li key={i}>
+                                {set[0]} reps at {set[1]}
+                              </li>
+                            );
+                          }
+                        )}
                       </ul>
                     </div>
                   );

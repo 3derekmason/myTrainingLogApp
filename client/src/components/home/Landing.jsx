@@ -20,6 +20,7 @@ const Landing = () => {
       .then((res) => res.json())
       .then((data) => {
         setUserWorkouts(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -32,6 +33,7 @@ const Landing = () => {
     }
     getWorkouts(currentUser?.userId);
     setCurrentDate(currentDate.split(" at ")[0]);
+    console.log(userWorkouts);
   }, [currentUser, currentDate]);
 
   if (!currentUser || currentUser.message) {
@@ -70,6 +72,9 @@ const Landing = () => {
           <Button
             onClick={(e) => {
               e.preventDefault();
+              if (!userWorkouts) {
+                return;
+              }
               setOpenUserLog(true);
             }}
           >
