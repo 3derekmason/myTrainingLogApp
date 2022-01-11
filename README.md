@@ -14,8 +14,10 @@ Since nothing has ever matched exactly what I want, I decided to take things int
 MTLA is a full stack (MERN) application including:
 
 - User login and signup with bcrypt authorization
+<div>
   <img src="./client/public/assets/login.png" width="240">
   <img src="./client/public/assets/signup.png" width="240">
+  </div>
 
 - Log View or This Week view of stored workouts.
 
