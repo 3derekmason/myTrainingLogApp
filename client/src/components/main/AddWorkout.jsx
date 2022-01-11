@@ -38,6 +38,9 @@ const AddWorkout = () => {
   const [newExerciseSets, setNewExerciseSets] = useState([]);
   const [exercises, setExercises] = useState([]);
 
+  const [newWorkoutDate, setNewWorkoutDate] = useState();
+  const [newWorkoutType, setNewWorkoutType] = useState();
+
   // Modal controls, helpers etc...
   const [exerciseOpen, setExerciseOpen] = useState(false);
   const handleExerciseOpen = () => setExerciseOpen(true);
@@ -73,7 +76,7 @@ const AddWorkout = () => {
     setNewExerciseName("");
     setNewExerciseSets([]);
     setNewExerciseSuperset(false);
-    console.log(exercises);
+    handleExerciseClose();
   };
 
   const handleSetRepsChange = (e) => {
@@ -91,8 +94,17 @@ const AddWorkout = () => {
     setWorkoutType(e.target.value);
   };
 
+  const addWorkoutToLog = (e) => {
+    e.preventDefault();
+    const newWorkout = {
+      userId: currentUser.userId,
+      exercises: exercises,
+    };
+    console.log(newWorkout);
+  };
+
   // Update add sets modal with number of sets stored
-  useEffect(() => {}, [newExerciseSets]);
+  useEffect(() => {}, [newExerciseSets, exercises]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -154,6 +166,25 @@ const AddWorkout = () => {
             <Button variant="text" onClick={handleExerciseOpen}>
               Add
             </Button>
+          </div>
+          <div className="newExerciseContainer">
+            {exercises.map((exercise, i) => {
+              return (
+                <Card className="newExercise" key={i}>
+                  <Typography element="h4" variant="button">
+                    {Object.keys(exercise)[0]}
+                  </Typography>
+                  <Typography element="h4" variant="caption">
+                    {exercise[Object.keys(exercise)[0]].sets}
+                  </Typography>
+                  <Typography element="h4" variant="button">
+                    {JSON.stringify(
+                      exercise[Object.keys(exercise)[0]].superset
+                    )}
+                  </Typography>
+                </Card>
+              );
+            })}
           </div>
           <Modal
             open={exerciseOpen}
@@ -240,7 +271,9 @@ const AddWorkout = () => {
               </form>
             </Box>
           </Modal>
-          <Button fullWidth>ADD TO LOG</Button>
+          <Button fullWidth onClick={addWorkoutToLog}>
+            ADD TO LOG
+          </Button>
         </div>
         <div className="addWorkoutFoot"></div>
       </Card>
