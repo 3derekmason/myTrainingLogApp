@@ -120,7 +120,7 @@ body {
 
 .cardHead {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   margin-bottom: 8px;
@@ -143,5 +143,5 @@ body {
 }
 
 .setRW {
-  max-width: 3em;
+  max-width: 3.5em;
 }

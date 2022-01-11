@@ -51,9 +51,13 @@ const AddWorkout = () => {
     e.preventDefault();
     const newSet = [Number(newSetReps), Number(newSetWeight)];
     const newSets = newExerciseSets;
-    newSets.push(newSet);
     setNewSetReps("");
     setNewSetWeight("");
+    if (newSet[0] === 0 || newSet[1] === 0) {
+      alert("Please fill in both fields");
+      return;
+    }
+    newSets.push(newSet);
     setNewExerciseSets(newSets);
 
     console.log(newExerciseSets);
@@ -164,7 +168,7 @@ const AddWorkout = () => {
                     </Typography>
                   </div>
                   <div className="cardHead">
-                    <Typography element="h6" variant="subtitle1">
+                    <Typography element="h3" variant="h4" color="secondary">
                       {newExerciseSets.length + 1}
                     </Typography>
                     <TextField
@@ -185,6 +189,13 @@ const AddWorkout = () => {
 
                   <Button onClick={addNewSet}>Add Set</Button>
                 </Card>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  style={{ marginBottom: "24px" }}
+                >
+                  Add Exercise
+                </Button>
               </form>
             </Box>
           </Modal>
