@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Card,
+  Checkbox,
   IconButton,
   FormControl,
   FormHelperText,
@@ -19,18 +20,6 @@ import {
 } from "@material-ui/core";
 import ReactDatePicker from "react-datepicker";
 import AppContext from "../context.js";
-
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 const AddWorkout = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
@@ -109,13 +98,37 @@ const AddWorkout = () => {
             onClose={handleExerciseClose}
             aria-labelledby="addExerciseModal"
           >
-            <Box sx={modalStyle}>
+            <Box className="addExerciseModal">
               <Typography id="exerciseModalTitle" variant="h6" component="h2">
                 Add Exercise
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Add an exercise. Name, superset, sets, reps, and weight
               </Typography>
+              <form style={{ display: "flex", flexDirection: "column" }}>
+                <TextField
+                  id="exerciseName"
+                  label="Exercise Name"
+                  variant="standard"
+                />
+                <Typography element="h5" variant="caption">
+                  Superset with previous?
+                </Typography>
+                <Checkbox aria-label="Checkbox demo" />
+                <Card className="exerciseSetsCard">
+                  <div className="cardHead">
+                    <Typography element="h3" variant="subtitle1">
+                      Set
+                    </Typography>
+                    <Typography element="h3" variant="subtitle1">
+                      Reps
+                    </Typography>
+                    <Typography element="h3" variant="subtitle1">
+                      Weight
+                    </Typography>
+                  </div>
+                </Card>
+              </form>
             </Box>
           </Modal>
         </div>
