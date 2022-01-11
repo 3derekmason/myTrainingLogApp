@@ -1,18 +1,34 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import { AppBar, Button, Card, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Box,
+  Button,
+  Card,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  Toolbar,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import ReactDatePicker from "react-datepicker";
 import AppContext from "../context.js";
 
 const AddWorkout = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
     React.useContext(AppContext);
-  const [currentDate, setCurrentDate] = useState(
-    new Intl.DateTimeFormat("en-GB", {
-      dateStyle: "full",
-      timeStyle: "long",
-    }).format(new Date())
-  );
+
+  const [workoutDate, setWorkoutDate] = useState(new Date());
+  const [workoutType, setWorkoutType] = useState("");
+
+  const handleTypeChange = (e) => {
+    e.preventDefault();
+    setWorkoutType(e.target.value);
+  };
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -41,7 +57,28 @@ const AddWorkout = () => {
             Log a workout!
           </Typography>
         </div>
-        <div className="addWorkoutForm"></div>
+        <div className="addWorkoutForm">
+          <ReactDatePicker
+            selected={workoutDate}
+            onChange={(date) => setWorkoutDate(date)}
+          />
+
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="typeLabel">Type</InputLabel>
+            <Select
+              labelId="typeLabel"
+              id="typeSelector"
+              value={workoutType}
+              label="Type"
+              onChange={handleTypeChange}
+            >
+              <MenuItem value={"push"}>Push</MenuItem>
+              <MenuItem value={"pull"}>Pull</MenuItem>
+              <MenuItem value={"core"}>Core</MenuItem>
+            </Select>
+            <FormHelperText>Training Style</FormHelperText>
+          </FormControl>
+        </div>
         <div className="addWorkoutFoot"></div>
       </Card>
     </div>
