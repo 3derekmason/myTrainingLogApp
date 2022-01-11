@@ -11,7 +11,7 @@ const WorkoutSchema = mongoose.Schema({
   userId: Number,
   date: Date,
   type: String,
-  exercises: {},
+  exercises: [],
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema, "workouts");
@@ -30,7 +30,7 @@ module.exports = {
     try {
       const doc = new Workout();
       doc._id = mongoose.Types.ObjectId();
-      doc.date = new Date();
+      doc.date = req.body.date;
       doc.userId = req.body.userId;
       doc.type = req.body.type;
       doc.exercises = req.body.exercises;
