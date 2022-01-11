@@ -8,7 +8,6 @@ mongoose.connect("mongodb://localhost:27017/mtla", {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
-// "mongodb+srv://derekmason:3314@Cluster0.ngscf.mongodb.net/mtla?retryWrites=true&w=majority"
 
 const UserSchema = mongoose.Schema({
   _id: mongoose.ObjectId,
