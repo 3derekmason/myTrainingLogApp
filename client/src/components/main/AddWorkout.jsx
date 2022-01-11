@@ -11,6 +11,7 @@ import {
   FormHelperText,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   Toolbar,
   TextField,
@@ -19,12 +20,28 @@ import {
 import ReactDatePicker from "react-datepicker";
 import AppContext from "../context.js";
 
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const AddWorkout = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
     React.useContext(AppContext);
 
   const [workoutDate, setWorkoutDate] = useState(new Date());
   const [workoutType, setWorkoutType] = useState("");
+  const [exerciseOpen, setExerciseOpen] = useState(false);
+
+  const handleExerciseOpen = () => setExerciseOpen(true);
+  const handleExerciseClose = () => setExerciseOpen(false);
 
   const handleTypeChange = (e) => {
     e.preventDefault();
@@ -83,8 +100,24 @@ const AddWorkout = () => {
             <Typography element="h4" variant="h5">
               Exercises:
             </Typography>
-            <Button variant="text">Add</Button>
+            <Button variant="text" onClick={handleExerciseOpen}>
+              Add
+            </Button>
           </div>
+          <Modal
+            open={exerciseOpen}
+            onClose={handleExerciseClose}
+            aria-labelledby="addExerciseModal"
+          >
+            <Box sx={modalStyle}>
+              <Typography id="exerciseModalTitle" variant="h6" component="h2">
+                Add Exercise
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Add an exercise. Name, superset, sets, reps, and weight
+              </Typography>
+            </Box>
+          </Modal>
         </div>
         <div className="addWorkoutFoot"></div>
       </Card>
