@@ -26,6 +26,15 @@ module.exports = {
       res.status(500).send(e);
     }
   },
+  getLastWorkout: async (req, res) => {
+    try {
+      const id = Number(req.query.userId);
+      const workouts = await Workout.findOne({ userId: id });
+      res.send(workout);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  },
   addWorkout: async (req, res) => {
     try {
       const doc = new Workout();

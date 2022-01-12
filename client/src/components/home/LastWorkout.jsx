@@ -1,15 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import {
-  AppBar,
-  Button,
-  Card,
-  Container,
-  Paper,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { Button, Card, Paper, Typography } from "@material-ui/core";
 import AppContext from "../context.js";
 
 const LastWorkout = () => {
@@ -36,7 +28,17 @@ const LastWorkout = () => {
 
   return (
     <div className="workoutSummary">
-      <Paper></Paper>
+      <Paper>
+        Most recent Workout:
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            console.log(lastWorkout);
+          }}
+        >
+          TRY ME
+        </Button>
+      </Paper>
     </div>
   );
 };
