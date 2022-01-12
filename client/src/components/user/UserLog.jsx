@@ -30,9 +30,14 @@ const UserLog = () => {
     <div className="userLogPage">
       <AppBar position="static">
         <Toolbar>
-          <Typography element="h5" variant="h5">
-            [] MTLA
-          </Typography>
+          <Link
+            to="/landing"
+            style={{ textDecoration: "none", color: "#ffffff" }}
+          >
+            <Typography element="h5" variant="h5">
+              [] MTLA
+            </Typography>
+          </Link>
           <Button
             onClick={(e) => {
               e.preventDefault();

@@ -43,6 +43,8 @@ const AddWorkout = () => {
   const handleExerciseOpen = () => setExerciseOpen(true);
   const handleExerciseClose = () => setExerciseOpen(false);
 
+  const [afterSubmit, setAfterSubmit] = useState(false);
+
   const addNewSet = (e) => {
     e.preventDefault();
     const newSet = [Number(newSetReps), Number(newSetWeight)];
@@ -55,8 +57,6 @@ const AddWorkout = () => {
     }
     newSets.push(newSet);
     setNewExerciseSets(newSets);
-
-    console.log(newExerciseSets);
   };
 
   const addExerciseToWorkout = (e) => {
@@ -92,6 +92,10 @@ const AddWorkout = () => {
     setWorkoutType(e.target.value);
   };
 
+  const navigateAfterSubmit = () => {
+    setAfterSubmit(true);
+  };
+
   const addWorkoutToLog = (e) => {
     e.preventDefault();
     const newWorkout = {
@@ -114,6 +118,10 @@ const AddWorkout = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    setWorkoutDate(new Date());
+    setWorkoutType("");
+    setExercises([]);
+    navigateAfterSubmit();
   };
 
   // Update add sets modal with number of sets stored
@@ -122,14 +130,22 @@ const AddWorkout = () => {
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
+  if (afterSubmit) {
+    return <Navigate to="/landing" />;
+  }
 
   return (
     <div className="landingPage">
       <AppBar position="static">
         <Toolbar>
-          <Typography element="h5" variant="h5">
-            [] MTLA
-          </Typography>
+          <Link
+            to="/landing"
+            style={{ textDecoration: "none", color: "#ffffff" }}
+          >
+            <Typography element="h5" variant="h5">
+              [] MTLA
+            </Typography>
+          </Link>
           <Button
             onClick={(e) => {
               e.preventDefault();

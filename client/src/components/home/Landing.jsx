@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { AppBar, Button, Card, Toolbar, Typography } from "@material-ui/core";
 import AppContext from "../context.js";
+import LastWorkout from "./LastWorkout.jsx";
 
 const Landing = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
@@ -84,7 +85,9 @@ const Landing = () => {
             <Button>ADD WORKOUT</Button>
           </Link>
         </div>
-        <div className="landingFoot"></div>
+        <div className="landingFoot">
+          <LastWorkout />
+        </div>
       </Card>
     </div>
   );
