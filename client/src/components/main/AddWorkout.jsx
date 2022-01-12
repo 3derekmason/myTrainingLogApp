@@ -43,6 +43,8 @@ const AddWorkout = () => {
   const handleExerciseOpen = () => setExerciseOpen(true);
   const handleExerciseClose = () => setExerciseOpen(false);
 
+  const [afterSubmit, setAfterSubmit] = useState(false);
+
   const addNewSet = (e) => {
     e.preventDefault();
     const newSet = [Number(newSetReps), Number(newSetWeight)];
@@ -55,8 +57,6 @@ const AddWorkout = () => {
     }
     newSets.push(newSet);
     setNewExerciseSets(newSets);
-
-    console.log(newExerciseSets);
   };
 
   const addExerciseToWorkout = (e) => {
@@ -92,6 +92,10 @@ const AddWorkout = () => {
     setWorkoutType(e.target.value);
   };
 
+  const navigateAfterSubmit = () => {
+    setAfterSubmit(true);
+  };
+
   const addWorkoutToLog = (e) => {
     e.preventDefault();
     const newWorkout = {
@@ -117,6 +121,7 @@ const AddWorkout = () => {
     setWorkoutDate(new Date());
     setWorkoutType("");
     setExercises([]);
+    navigateAfterSubmit();
   };
 
   // Update add sets modal with number of sets stored
@@ -124,6 +129,9 @@ const AddWorkout = () => {
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
+  }
+  if (afterSubmit) {
+    return <Navigate to="/landing" />;
   }
 
   return (

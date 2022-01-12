@@ -14,13 +14,17 @@ const LastWorkout = () => {
     fetch(`/api/recent/?userId=${filterId}`)
       .then((res) => res.json())
       .then((data) => {
-        setLastWorkout(data);
         console.log(data);
+        setLastWorkout(data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    getLastWorkout(currentUser.userId);
+  }, [currentUser, userWorkouts]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -30,14 +34,15 @@ const LastWorkout = () => {
     <div className="workoutSummary">
       <Paper>
         Most recent Workout:
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(lastWorkout);
-          }}
-        >
-          TRY ME
-        </Button>
+        <Typography element="h2" variant="subtitle1">
+          {lastWorkout?.date}
+        </Typography>
+        <Typography element="h2" variant="subtitle2">
+          {lastWorkout?.type}
+        </Typography>
+        <Typography element="h2" variant="button">
+          {JSON.stringify(lastWorkout?.exercises)}
+        </Typography>
       </Paper>
     </div>
   );
