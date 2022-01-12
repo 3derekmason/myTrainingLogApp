@@ -29,7 +29,9 @@ module.exports = {
   getLastWorkout: async (req, res) => {
     try {
       const id = Number(req.query.userId);
-      const workout = await Workout.findOne({ userId: id });
+      const workout = await Workout.find({ userId: id })
+        .limit(1)
+        .sort({ _id: -1 });
       res.send(workout);
     } catch (e) {
       res.status(500).send(e);
