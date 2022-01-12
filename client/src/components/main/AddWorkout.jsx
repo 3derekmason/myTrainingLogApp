@@ -114,6 +114,9 @@ const AddWorkout = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    setWorkoutDate(new Date());
+    setWorkoutType("");
+    setExercises([]);
   };
 
   // Update add sets modal with number of sets stored
@@ -127,9 +130,14 @@ const AddWorkout = () => {
     <div className="landingPage">
       <AppBar position="static">
         <Toolbar>
-          <Typography element="h5" variant="h5">
-            [] MTLA
-          </Typography>
+          <Link
+            to="/landing"
+            style={{ textDecoration: "none", color: "#ffffff" }}
+          >
+            <Typography element="h5" variant="h5">
+              [] MTLA
+            </Typography>
+          </Link>
           <Button
             onClick={(e) => {
               e.preventDefault();
