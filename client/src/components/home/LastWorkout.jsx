@@ -36,14 +36,23 @@ const LastWorkout = () => {
     <div className="workoutSummary">
       <Card className="lastWorkoutCard">
         <CardHeader
-          title="Summary of Last Workout:"
-          subheader={lastWorkout[0]?.date}
+          title="Summary of last workout:"
+          subheader={
+            lastWorkout[0]?.date + " || " + lastWorkout[0]?.type.toUpperCase()
+          }
         />
 
         <CardContent>
-          <Typography variant="body2" component="p">
+          <Typography variant="caption" component="p">
             Most recent workout summary
           </Typography>
+          {lastWorkout[0]?.exercises.map((exerciseObject, i) => {
+            return (
+              <Typography key={i} component="p" variant="h6">
+                {Object.keys(exerciseObject)[0]}
+              </Typography>
+            );
+          })}
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
@@ -56,11 +65,13 @@ const LastWorkout = () => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Workout:</Typography>
-            <Typography paragraph>Row of exercise</Typography>
-            <Typography paragraph>another Exercise Row</Typography>
-            <Typography paragraph>another exercise row</Typography>
-            <Typography>another exercise row?</Typography>
+            {lastWorkout[0]?.exercises.map((exercise, i) => {
+              return (
+                <Typography key={i} paragraph>
+                  {JSON.stringify(exercise)}
+                </Typography>
+              );
+            })}
           </CardContent>
         </Collapse>
       </Card>
