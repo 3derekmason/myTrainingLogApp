@@ -5,26 +5,7 @@ import { Button, Card, Paper, Typography } from "@material-ui/core";
 import AppContext from "../context.js";
 
 const LastWorkout = () => {
-  const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
-    React.useContext(AppContext);
-
-  const [lastWorkout, setLastWorkout] = useState();
-
-  const getLastWorkout = (filterId) => {
-    fetch(`/api/recent/?userId=${filterId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setLastWorkout(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    getLastWorkout(currentUser.userId);
-  }, [currentUser, userWorkouts]);
+  const { currentUser, lastWorkout } = React.useContext(AppContext);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -34,14 +15,10 @@ const LastWorkout = () => {
     <div className="workoutSummary">
       <Paper>
         Most recent Workout:
-        <Typography element="h2" variant="subtitle1">
-          {lastWorkout?.date}
-        </Typography>
-        <Typography element="h2" variant="subtitle2">
-          {lastWorkout?.type}
-        </Typography>
-        <Typography element="h2" variant="button">
-          {JSON.stringify(lastWorkout?.exercises)}
+        <Typography element="h6" variant="caption">
+          {JSON.stringify(lastWorkout[0]?.date)}
+          {JSON.stringify(lastWorkout[0]?.type)}
+          {JSON.stringify(lastWorkout[0]?.exercises)}
         </Typography>
       </Paper>
     </div>

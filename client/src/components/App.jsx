@@ -12,11 +12,14 @@ import AddWorkout from "./main/AddWorkout.jsx";
 const App = () => {
   const [currentUser, setCurrentUser] = useState();
   const [userWorkouts, setUserWorkouts] = useState();
+  const [lastWorkout, setLastWorkout] = useState();
   return (
     <AppContext.Provider
       value={{
         currentUser,
         setCurrentUser,
+        lastWorkout,
+        setLastWorkout,
         userWorkouts,
         setUserWorkouts,
       }}
