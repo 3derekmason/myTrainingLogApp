@@ -1,13 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import { AppBar, Button, Card, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Button,
+  Card,
+  Paper,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import AppContext from "../context.js";
 import LastWorkout from "./LastWorkout.jsx";
 
 const Landing = () => {
-  const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
-    React.useContext(AppContext);
+  const {
+    currentUser,
+    setCurrentUser,
+    lastWorkout,
+    setLastWorkout,
+    userWorkouts,
+    setUserWorkouts,
+  } = React.useContext(AppContext);
+
   const [openUserLog, setOpenUserLog] = useState(false);
   const [currentDate, setCurrentDate] = useState(
     new Intl.DateTimeFormat("en-GB", {
@@ -21,7 +35,17 @@ const Landing = () => {
       .then((res) => res.json())
       .then((data) => {
         setUserWorkouts(data);
-        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getLastWorkout = (filterId) => {
+    fetch(`/api/recent/?userId=${filterId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setLastWorkout(data);
       })
       .catch((err) => {
         console.log(err);
@@ -29,19 +53,27 @@ const Landing = () => {
   };
 
   useEffect(() => {
-    if (!currentDate || !currentUser) {
-      return;
-    }
+    setCurrentDate(currentDate?.split(" at ")[0]);
+  }, []);
+
+  useEffect(() => {
     getWorkouts(currentUser?.userId);
-    setCurrentDate(currentDate.split(" at ")[0]);
-    console.log(userWorkouts);
-  }, [currentUser, currentDate]);
+    getLastWorkout(currentUser?.userId);
+    console.log(userWorkouts, lastWorkout);
+  }, [currentUser]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
   if (openUserLog) {
     return <Navigate to="/userlog" />;
+  }
+  if (!userWorkouts) {
+    return (
+      <div>
+        <Paper>Grabbing Workouts...</Paper>
+      </div>
+    );
   }
   return (
     <div className="landingPage">
@@ -73,9 +105,6 @@ const Landing = () => {
           <Button
             onClick={(e) => {
               e.preventDefault();
-              if (!userWorkouts) {
-                return;
-              }
               setOpenUserLog(true);
             }}
           >

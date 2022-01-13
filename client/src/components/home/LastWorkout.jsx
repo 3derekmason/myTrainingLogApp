@@ -1,30 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import { Button, Card, Paper, Typography } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  Collapse,
+  IconButton,
+  Paper,
+  Typography,
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppContext from "../context.js";
 
 const LastWorkout = () => {
-  const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
-    React.useContext(AppContext);
+  const { currentUser, lastWorkout } = useContext(AppContext);
+  const [expanded, setExpanded] = useState(false);
 
-  const [lastWorkout, setLastWorkout] = useState();
-
-  const getLastWorkout = (filterId) => {
-    fetch(`/api/recent/?userId=${filterId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setLastWorkout(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const expandStyle = {
+    transform: "rotate(180deg)",
   };
 
-  useEffect(() => {
-    getLastWorkout(currentUser.userId);
-  }, [currentUser, userWorkouts]);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -32,18 +34,47 @@ const LastWorkout = () => {
 
   return (
     <div className="workoutSummary">
-      <Paper>
-        Most recent Workout:
-        <Typography element="h2" variant="subtitle1">
-          {lastWorkout?.date}
-        </Typography>
-        <Typography element="h2" variant="subtitle2">
-          {lastWorkout?.type}
-        </Typography>
-        <Typography element="h2" variant="button">
-          {JSON.stringify(lastWorkout?.exercises)}
-        </Typography>
-      </Paper>
+      <Card className="lastWorkoutCard">
+        <CardHeader
+          title="Summary of last workout:"
+          subheader={
+            lastWorkout[0]?.date + " || " + lastWorkout[0]?.type.toUpperCase()
+          }
+        />
+
+        <CardContent>
+          <Typography variant="caption" component="p">
+            Most recent workout summary
+          </Typography>
+          {lastWorkout[0]?.exercises.map((exerciseObject, i) => {
+            return (
+              <Typography key={i} component="p" variant="h6">
+                {Object.keys(exerciseObject)[0]}
+              </Typography>
+            );
+          })}
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon style={expanded ? expandStyle : {}} />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            {lastWorkout[0]?.exercises.map((exercise, i) => {
+              return (
+                <Typography key={i} paragraph>
+                  {JSON.stringify(exercise)}
+                </Typography>
+              );
+            })}
+          </CardContent>
+        </Collapse>
+      </Card>
     </div>
   );
 };
