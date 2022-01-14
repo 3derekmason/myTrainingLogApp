@@ -191,8 +191,8 @@ const AddWorkout = () => {
               <MenuItem value={"push"}>Push</MenuItem>
               <MenuItem value={"pull"}>Pull</MenuItem>
               <MenuItem value={"core"}>Core</MenuItem>
-              <MenuItem value={"mob"}>Mobility</MenuItem>
-              <MenuItem value={"stab"}>Stability</MenuItem>
+              <MenuItem value={"mobility"}>Mobility</MenuItem>
+              <MenuItem value={"stability"}>Stability</MenuItem>
               <MenuItem value={"cardio"}>Cardio</MenuItem>
             </Select>
             <FormHelperText>Training Style</FormHelperText>
