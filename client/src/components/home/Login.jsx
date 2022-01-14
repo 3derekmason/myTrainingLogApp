@@ -2,6 +2,7 @@ import { Button, Card, Typography, TextField } from "@material-ui/core";
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 
 const Login = () => {
@@ -56,8 +57,11 @@ const Login = () => {
     <div className="loginPage">
       <Card className="loginContainer">
         <div className="loginHead">
-          <Typography component="h1" variant="h3">
-            MTLA
+          <Typography component="h1" variant="h1">
+            <FitnessCenterIcon style={{ fontSize: "64px" }} />
+          </Typography>
+          <Typography component="h3" variant="caption">
+            My Training Log App
           </Typography>
           <Typography component="h3" variant="h5">
             Log in to your log...

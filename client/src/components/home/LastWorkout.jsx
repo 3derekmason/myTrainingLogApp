@@ -16,6 +16,15 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppContext from "../context.js";
 
+const buildDate = (dateString) => {
+  const splitDate = dateString.split("T");
+  const splitDigits = splitDate[0].split("-");
+  const year = splitDigits[0];
+  const month = splitDigits[1];
+  const day = splitDigits[2];
+  return `${month}/${day}/${year}`;
+};
+
 const LastWorkout = () => {
   const { currentUser, lastWorkout } = useContext(AppContext);
   const [expanded, setExpanded] = useState(false);
@@ -23,7 +32,6 @@ const LastWorkout = () => {
   const expandStyle = {
     transform: "rotate(180deg)",
   };
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -51,29 +59,30 @@ const LastWorkout = () => {
       </div>
     );
   }
+  if (!lastWorkout[0]?.date) {
+    return <Paper>Loading...</Paper>;
+  }
 
   return (
     <div className="workoutSummary">
       <Card className="lastWorkoutCard">
         <CardHeader
-          title="Summary of last workout:"
-          subheader={
-            lastWorkout[0]?.date + " || " + lastWorkout[0]?.type.toUpperCase()
-          }
+          title="Summary of Most Recent Workout:"
+          subheader={lastWorkout[0]?.type.toUpperCase()}
         />
 
         <CardContent>
           <Typography variant="caption" component="p">
-            Most recent workout summary
+            Last workout logged:
           </Typography>
-          {lastWorkout[0]?.exercises.map((exerciseObject, i) => {
-            return (
-              <Typography key={i} component="p" variant="h6">
-                {Object.keys(exerciseObject)?.[0]}
-              </Typography>
-            );
-          })}
+          <Typography component="p" variant="h6">
+            On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}
+            {Object.keys(lastWorkout?.[0].exercises).length} exercises
+          </Typography>
         </CardContent>
+        <Typography component="p" variant="caption">
+          See more:
+        </Typography>
         <CardActions disableSpacing>
           <IconButton
             onClick={handleExpandClick}

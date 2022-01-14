@@ -18,6 +18,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import ReactDatePicker from "react-datepicker";
 import AppContext from "../context.js";
 
@@ -35,6 +36,7 @@ const AddWorkout = () => {
   const [newSetReps, setNewSetReps] = useState("");
   const [newSetWeight, setNewSetWeight] = useState("");
 
+  const [superset, setSuperset] = useState(false);
   const [newExerciseSets, setNewExerciseSets] = useState([]);
   const [exercises, setExercises] = useState([]);
 
@@ -45,12 +47,18 @@ const AddWorkout = () => {
 
   const [afterSubmit, setAfterSubmit] = useState(false);
 
+  const handleCheck = (e) => {
+    e.preventDefault();
+    setSuperset(e.target.checked);
+  };
+
   const addNewSet = (e) => {
     e.preventDefault();
     const newSet = [Number(newSetReps), Number(newSetWeight)];
     const newSets = newExerciseSets;
     setNewSetReps("");
     setNewSetWeight("");
+
     if (newSet[0] === 0 || newSet[1] === 0) {
       alert("Please fill in both fields");
       return;
@@ -65,14 +73,14 @@ const AddWorkout = () => {
     const exerciseToAdd = {
       [newExerciseName]: {
         sets: newExerciseSets,
-        superset: newExerciseSuperset,
+        superset: superset,
       },
     };
     newExercises.push(exerciseToAdd);
     setExercises(newExercises);
     setNewExerciseName("");
     setNewExerciseSets([]);
-    setNewExerciseSuperset(false);
+    setSuperset(false);
     handleExerciseClose();
   };
 
@@ -88,7 +96,6 @@ const AddWorkout = () => {
 
   const handleTypeChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setWorkoutType(e.target.value);
   };
 
@@ -143,7 +150,7 @@ const AddWorkout = () => {
             style={{ textDecoration: "none", color: "#ffffff" }}
           >
             <Typography element="h5" variant="h5">
-              [] MTLA
+              <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>
           <Button
@@ -253,7 +260,11 @@ const AddWorkout = () => {
                   <Typography element="h5" variant="caption">
                     Superset with previous?
                   </Typography>
-                  <Checkbox aria-label="superset" />
+                  <Checkbox
+                    checked={superset}
+                    onChange={handleCheck}
+                    aria-label="superset"
+                  />
                 </div>
                 <Card className="exerciseSetsCard">
                   <div className="cardHead">
@@ -267,6 +278,21 @@ const AddWorkout = () => {
                       Weight
                     </Typography>
                   </div>
+                  {newExerciseSets.map((newSet, i) => {
+                    return (
+                      <div className="cardHead" key={i}>
+                        <Typography element="h4" variant="h5" color="primary">
+                          {i + 1}
+                        </Typography>
+                        <Typography element="h4" variant="h5" color="primary">
+                          {newSet[0]}
+                        </Typography>
+                        <Typography element="h4" variant="h5" color="primary">
+                          {newSet[1]}
+                        </Typography>
+                      </div>
+                    );
+                  })}
                   <div className="cardHead">
                     <Typography element="h3" variant="h4" color="secondary">
                       {newExerciseSets.length + 1}
