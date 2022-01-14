@@ -54,11 +54,14 @@ const AddWorkout = () => {
 
   const addNewSet = (e) => {
     e.preventDefault();
-    const newSet = [Number(newSetReps), Number(newSetWeight)];
+
+    const newSet =
+      typeof newSetWeight === "number"
+        ? [Number(newSetReps), Number(newSetWeight)]
+        : [Number(newSetReps), "bw"];
     const newSets = newExerciseSets;
     setNewSetReps("");
     setNewSetWeight("");
-
     if (newSet[0] === 0 || newSet[1] === 0) {
       alert("Please fill in both fields");
       return;

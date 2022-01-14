@@ -105,7 +105,7 @@ const LastWorkout = () => {
                   {exercise[exerciseName]?.sets?.map((set, i) => {
                     return (
                       <Typography key={i} element="h6" variant="caption">
-                        {`${set[0]} at ${set[1]} pounds`}
+                        {`${set[0]} at ${set[1]}`}
                       </Typography>
                     );
                   })}
