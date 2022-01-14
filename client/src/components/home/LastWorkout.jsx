@@ -67,26 +67,22 @@ const LastWorkout = () => {
     <div className="workoutSummary">
       <Card className="lastWorkoutCard">
         <CardHeader
-          title="Summary of last workout:"
-          subheader={
-            buildDate(lastWorkout?.[0]?.date) +
-            " || " +
-            lastWorkout[0]?.type.toUpperCase()
-          }
+          title="Summary of Most Recent Workout:"
+          subheader={lastWorkout[0]?.type.toUpperCase()}
         />
 
         <CardContent>
           <Typography variant="caption" component="p">
-            Most recent workout summary
+            Last workout logged:
           </Typography>
-          {lastWorkout[0]?.exercises.map((exerciseObject, i) => {
-            return (
-              <Typography key={i} component="p" variant="h6">
-                {Object.keys(exerciseObject)?.[0]}
-              </Typography>
-            );
-          })}
+          <Typography component="p" variant="h6">
+            On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}
+            {Object.keys(lastWorkout?.[0].exercises).length} exercises
+          </Typography>
         </CardContent>
+        <Typography component="p" variant="caption">
+          See more:
+        </Typography>
         <CardActions disableSpacing>
           <IconButton
             onClick={handleExpandClick}
