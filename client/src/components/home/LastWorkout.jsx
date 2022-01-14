@@ -31,6 +31,26 @@ const LastWorkout = () => {
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
+  if (!lastWorkout || lastWorkout.length === 0) {
+    return (
+      <div className="workoutSummary">
+        <Card className="lastWorkoutCard">
+          <Typography component="h4" variant="h5">
+            Welcome to My Training Log App!
+          </Typography>
+          <Typography component="h5" variant="subtitle1">
+            Click on <em>Add Workout</em> to log your first workout! All of your
+            workouts will appear in the <em>User Log</em>. A summary of your
+            most recently logged workout will appear here!
+          </Typography>
+          <Typography component="h5" variant="subtitle2">
+            That's all for right now, more to come! Have fun training and
+            logging.
+          </Typography>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="workoutSummary">
