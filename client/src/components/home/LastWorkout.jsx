@@ -16,6 +16,15 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppContext from "../context.js";
 
+const buildDate = (dateString) => {
+  const splitDate = dateString.split("T");
+  const splitDigits = splitDate[0].split("-");
+  const year = splitDigits[0];
+  const month = splitDigits[1];
+  const day = splitDigits[2];
+  return `${month}/${day}/${year}`;
+};
+
 const LastWorkout = () => {
   const { currentUser, lastWorkout } = useContext(AppContext);
   const [expanded, setExpanded] = useState(false);
@@ -23,7 +32,6 @@ const LastWorkout = () => {
   const expandStyle = {
     transform: "rotate(180deg)",
   };
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -51,6 +59,9 @@ const LastWorkout = () => {
       </div>
     );
   }
+  if (!lastWorkout[0]?.date) {
+    return <Paper>Loading...</Paper>;
+  }
 
   return (
     <div className="workoutSummary">
@@ -58,7 +69,9 @@ const LastWorkout = () => {
         <CardHeader
           title="Summary of last workout:"
           subheader={
-            lastWorkout[0]?.date + " || " + lastWorkout[0]?.type.toUpperCase()
+            buildDate(lastWorkout?.[0]?.date) +
+            " || " +
+            lastWorkout[0]?.type.toUpperCase()
           }
         />
 
