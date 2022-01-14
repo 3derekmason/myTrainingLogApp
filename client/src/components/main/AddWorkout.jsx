@@ -278,6 +278,21 @@ const AddWorkout = () => {
                       Weight
                     </Typography>
                   </div>
+                  {newExerciseSets.map((newSet, i) => {
+                    return (
+                      <div className="cardHead" key={i}>
+                        <Typography element="h4" variant="h5" color="primary">
+                          {i + 1}
+                        </Typography>
+                        <Typography element="h4" variant="h5" color="primary">
+                          {newSet[0]}
+                        </Typography>
+                        <Typography element="h4" variant="h5" color="primary">
+                          {newSet[1]}
+                        </Typography>
+                      </div>
+                    );
+                  })}
                   <div className="cardHead">
                     <Typography element="h3" variant="h4" color="secondary">
                       {newExerciseSets.length + 1}
