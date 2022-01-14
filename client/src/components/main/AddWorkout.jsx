@@ -35,6 +35,7 @@ const AddWorkout = () => {
   const [newSetReps, setNewSetReps] = useState("");
   const [newSetWeight, setNewSetWeight] = useState("");
 
+  const [superset, setSuperset] = useState(false);
   const [newExerciseSets, setNewExerciseSets] = useState([]);
   const [exercises, setExercises] = useState([]);
 
@@ -45,12 +46,18 @@ const AddWorkout = () => {
 
   const [afterSubmit, setAfterSubmit] = useState(false);
 
+  const handleCheck = (e) => {
+    e.preventDefault();
+    setSuperset(e.target.checked);
+  };
+
   const addNewSet = (e) => {
     e.preventDefault();
     const newSet = [Number(newSetReps), Number(newSetWeight)];
     const newSets = newExerciseSets;
     setNewSetReps("");
     setNewSetWeight("");
+
     if (newSet[0] === 0 || newSet[1] === 0) {
       alert("Please fill in both fields");
       return;
@@ -65,14 +72,14 @@ const AddWorkout = () => {
     const exerciseToAdd = {
       [newExerciseName]: {
         sets: newExerciseSets,
-        superset: newExerciseSuperset,
+        superset: superset,
       },
     };
     newExercises.push(exerciseToAdd);
     setExercises(newExercises);
     setNewExerciseName("");
     setNewExerciseSets([]);
-    setNewExerciseSuperset(false);
+    setSuperset(false);
     handleExerciseClose();
   };
 
@@ -253,7 +260,11 @@ const AddWorkout = () => {
                   <Typography element="h5" variant="caption">
                     Superset with previous?
                   </Typography>
-                  <Checkbox aria-label="superset" />
+                  <Checkbox
+                    checked={superset}
+                    onChange={handleCheck}
+                    aria-label="superset"
+                  />
                 </div>
                 <Card className="exerciseSetsCard">
                   <div className="cardHead">
