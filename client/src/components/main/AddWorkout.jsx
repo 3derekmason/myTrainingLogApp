@@ -95,7 +95,6 @@ const AddWorkout = () => {
 
   const handleTypeChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setWorkoutType(e.target.value);
   };
 
