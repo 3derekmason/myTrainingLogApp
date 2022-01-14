@@ -49,7 +49,7 @@ const LastWorkout = () => {
           {lastWorkout[0]?.exercises.map((exerciseObject, i) => {
             return (
               <Typography key={i} component="p" variant="h6">
-                {Object.keys(exerciseObject)[0]}
+                {Object.keys(exerciseObject)?.[0]}
               </Typography>
             );
           })}
@@ -66,10 +66,21 @@ const LastWorkout = () => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {lastWorkout[0]?.exercises.map((exercise, i) => {
+              const exerciseName = Object.keys(exercise)?.[0];
+
               return (
-                <Typography key={i} paragraph>
-                  {JSON.stringify(exercise)}
-                </Typography>
+                <div key={i}>
+                  <Typography element="h6" variant="button">
+                    {exerciseName.toUpperCase()}
+                  </Typography>
+                  {exercise[exerciseName]?.sets?.map((set, i) => {
+                    return (
+                      <Typography key={i} element="h6" variant="caption">
+                        {`${set[0]} at ${set[1]} pounds`}
+                      </Typography>
+                    );
+                  })}
+                </div>
               );
             })}
           </CardContent>
