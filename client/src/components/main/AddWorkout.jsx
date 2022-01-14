@@ -18,6 +18,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import ReactDatePicker from "react-datepicker";
 import AppContext from "../context.js";
 
@@ -149,7 +150,7 @@ const AddWorkout = () => {
             style={{ textDecoration: "none", color: "#ffffff" }}
           >
             <Typography element="h5" variant="h5">
-              [] MTLA
+              <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>
           <Button

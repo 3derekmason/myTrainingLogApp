@@ -9,6 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 
 const UserLog = () => {
@@ -35,7 +36,7 @@ const UserLog = () => {
             style={{ textDecoration: "none", color: "#ffffff" }}
           >
             <Typography element="h5" variant="h5">
-              [] MTLA
+              <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>
           <Button
