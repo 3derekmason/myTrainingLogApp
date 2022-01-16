@@ -23,7 +23,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  background: url(./assets/signupLogs.jpg);
+  background: url(./assets/loginLogs.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -53,6 +53,19 @@ body {
 }
 .loginFoot {
   display: flex;
+}
+
+/* Appbar */
+
+.appbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appbar button {
+  color: #efebe9;
 }
 
 /* Landing Component */
@@ -105,7 +118,7 @@ body {
 /* UserLog Componenet */
 
 .userLogPage {
-  background: url(./assets/userlog.jpg);
+  background: url(./assets/signupLogs.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

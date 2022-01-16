@@ -147,7 +147,7 @@ const AddWorkout = () => {
   return (
     <div>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className="appbar">
           <Link
             to="/landing"
             style={{ textDecoration: "none", color: "#ffffff" }}

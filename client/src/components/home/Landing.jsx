@@ -80,7 +80,7 @@ const Landing = () => {
   return (
     <div>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className="appbar">
           <Typography element="h5" variant="h5">
             <FitnessCenterIcon /> MTLA
           </Typography>
