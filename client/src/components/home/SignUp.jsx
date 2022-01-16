@@ -62,7 +62,7 @@ const SignUp = () => {
     <div className="signupPage">
       <Card className="loginContainer">
         <div className="signupHead">
-          <Typography component="h2" variant="h3">
+          <Typography component="h2" variant="h3" color="primary">
             Create A Profile
           </Typography>
         </div>

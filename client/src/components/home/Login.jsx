@@ -57,13 +57,11 @@ const Login = () => {
     <div className="loginPage">
       <Card className="loginContainer">
         <div className="loginHead">
-          <Typography component="h3" variant="caption">
+          <Typography component="h3" variant="h5">
             My Training Log App
           </Typography>
-          <Typography component="h1" variant="h1">
-            <FitnessCenterIcon style={{ fontSize: "64px" }} />
-          </Typography>
-          <Typography component="h3" variant="h5">
+          <FitnessCenterIcon style={{ fontSize: "64px" }} />
+          <Typography component="h3" variant="subtitle1">
             Log in to your log...
           </Typography>
         </div>

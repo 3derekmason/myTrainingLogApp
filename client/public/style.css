@@ -43,6 +43,7 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 16px;
+  color: #5d4037;
 }
 .loginForm form {
   display: flex;
