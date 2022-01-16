@@ -61,7 +61,6 @@ const Landing = () => {
   useEffect(() => {
     getWorkouts(currentUser?.userId);
     getLastWorkout(currentUser?.userId);
-    console.log(userWorkouts, lastWorkout);
   }, [currentUser]);
 
   if (!currentUser || currentUser.message) {
