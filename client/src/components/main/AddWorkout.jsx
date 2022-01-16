@@ -69,6 +69,10 @@ const AddWorkout = () => {
 
   const addExerciseToWorkout = (e) => {
     e.preventDefault();
+    if (exercises.length === 0) {
+      handleExerciseClose();
+      return;
+    }
     const newExercises = exercises;
     const exerciseToAdd = {
       [newExerciseName]: {
@@ -81,7 +85,6 @@ const AddWorkout = () => {
     setNewExerciseName("");
     setNewExerciseSets([]);
     setSuperset(false);
-    handleExerciseClose();
   };
 
   const handleSetRepsChange = (e) => {
@@ -105,6 +108,10 @@ const AddWorkout = () => {
 
   const addWorkoutToLog = (e) => {
     e.preventDefault();
+    if (exercises.length === 0) {
+      navigateAfterSubmit();
+      return;
+    }
     const newWorkout = {
       userId: currentUser.userId,
       date: workoutDate,

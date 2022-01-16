@@ -108,12 +108,16 @@ const Landing = () => {
               }}
             >
               Welcome,{" "}
-              <div style={{ fontVariant: "small-caps" }} color="primary">
+              <div style={{ letterSpacing: "2px" }} color="primary">
                 {currentUser?.username}
               </div>
               !
             </Typography>
-            <Typography element="h5" variant="caption">
+            <Typography
+              style={{ marginTop: "16px", color: "#827717" }}
+              element="h4"
+              variant="caption"
+            >
               {currentDate}
             </Typography>
           </div>
