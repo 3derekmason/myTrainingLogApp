@@ -122,8 +122,16 @@ const Landing = () => {
             >
               USER LOG
             </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              color="primary"
+            >
+              THIS WEEK
+            </Button>
             <Link to="/addworkout" style={{ textDecoration: "none" }}>
-              <Button color="primary">ADD WORKOUT</Button>
+              <Button color="secondary">ADD WORKOUT</Button>
             </Link>
           </div>
           <LastWorkout />

@@ -55,10 +55,7 @@ const AddWorkout = () => {
   const addNewSet = (e) => {
     e.preventDefault();
 
-    const newSet =
-      typeof newSetWeight === "number"
-        ? [Number(newSetReps), Number(newSetWeight)]
-        : [Number(newSetReps), "bw"];
+    const newSet = [Number(newSetReps), newSetWeight];
     const newSets = newExerciseSets;
     setNewSetReps("");
     setNewSetWeight("");
@@ -330,7 +327,7 @@ const AddWorkout = () => {
                 </form>
               </Box>
             </Modal>
-            <Button fullWidth onClick={addWorkoutToLog}>
+            <Button fullWidth color="secondary" onClick={addWorkoutToLog}>
               ADD TO LOG
             </Button>
           </div>
