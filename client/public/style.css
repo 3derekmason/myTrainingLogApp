@@ -58,6 +58,10 @@ body {
 /* Landing Component */
 
 .landingPage {
+  background: url(./assets/landing.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -99,6 +103,22 @@ body {
 }
 
 /* UserLog Componenet */
+
+.userLogPage {
+  background: url(./assets/userlog.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.userLogContainer {
+  width: 640px;
+  height: 100%;
+  overflow: scroll;
+}
 
 .workoutLogCard {
   display: flex;
