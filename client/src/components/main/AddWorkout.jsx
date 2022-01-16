@@ -145,7 +145,7 @@ const AddWorkout = () => {
   }
 
   return (
-    <div className="landingPage">
+    <div>
       <AppBar position="static">
         <Toolbar>
           <Link
@@ -166,175 +166,177 @@ const AddWorkout = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Card className="addWorkoutContainer">
-        <div className="landingHead">
-          <Typography element="h3" variant="h5">
-            Log a workout!
-          </Typography>
-        </div>
-        {/* * * * * * SET WORKOUT DATE * * * * */}
-        <div className="addWorkoutForm">
-          <ReactDatePicker
-            selected={workoutDate}
-            onChange={(date) => setWorkoutDate(date)}
-          />
-          {/* * * * * * SET WORKOUT TYPE * * * * */}
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="typeLabel">Type</InputLabel>
-            <Select
-              labelId="typeLabel"
-              id="typeSelector"
-              value={workoutType}
-              label="Type"
-              onChange={handleTypeChange}
-            >
-              <MenuItem value={"push"}>Push</MenuItem>
-              <MenuItem value={"pull"}>Pull</MenuItem>
-              <MenuItem value={"core"}>Core</MenuItem>
-              <MenuItem value={"mobility"}>Mobility</MenuItem>
-              <MenuItem value={"stability"}>Stability</MenuItem>
-              <MenuItem value={"cardio"}>Cardio</MenuItem>
-            </Select>
-            <FormHelperText>Training Style</FormHelperText>
-          </FormControl>
-          {/* * * * * ADD EACH EXERCISE * * * * */}
-          <div className="addExerciseHead">
-            <Typography element="h4" variant="h5">
-              Exercises:
+      <div className="landingPage">
+        <Card className="addWorkoutContainer">
+          <div className="landingHead">
+            <Typography element="h3" variant="h5">
+              Log a workout!
             </Typography>
-            <Button variant="text" onClick={handleExerciseOpen}>
-              Add
-            </Button>
           </div>
-          <div className="newExerciseContainer">
-            {exercises.map((exercise, i) => {
-              return (
-                <Card className="newExercise" key={i}>
-                  <Typography element="h4" variant="button">
-                    {Object.keys(exercise)[0]}
-                  </Typography>
-                  <Typography element="h4" variant="caption">
-                    {exercise[Object.keys(exercise)[0]].sets}
-                  </Typography>
-                  <Typography element="h4" variant="button">
-                    {JSON.stringify(
-                      exercise[Object.keys(exercise)[0]].superset
-                    )}
-                  </Typography>
-                </Card>
-              );
-            })}
-          </div>
-          <Modal
-            open={exerciseOpen}
-            onClose={handleExerciseClose}
-            aria-labelledby="addExerciseModal"
-          >
-            {/* * * * * * * MODAL FOR EXERCISE * * * * * */}
-            <Box className="addExerciseModal">
-              <Typography id="exerciseModalTitle" variant="h6" component="h2">
-                Add Exercise
-              </Typography>
-              <form
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
+          {/* * * * * * SET WORKOUT DATE * * * * */}
+          <div className="addWorkoutForm">
+            <ReactDatePicker
+              selected={workoutDate}
+              onChange={(date) => setWorkoutDate(date)}
+            />
+            {/* * * * * * SET WORKOUT TYPE * * * * */}
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="typeLabel">Type</InputLabel>
+              <Select
+                labelId="typeLabel"
+                id="typeSelector"
+                value={workoutType}
+                label="Type"
+                onChange={handleTypeChange}
               >
-                <TextField
-                  id="exerciseName"
-                  label="Exercise Name"
-                  variant="standard"
-                  style={{ width: "90%" }}
-                  value={newExerciseName}
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setNewExerciseName(e.target.value);
-                  }}
-                />
-                <div
+                <MenuItem value={"push"}>Push</MenuItem>
+                <MenuItem value={"pull"}>Pull</MenuItem>
+                <MenuItem value={"core"}>Core</MenuItem>
+                <MenuItem value={"mobility"}>Mobility</MenuItem>
+                <MenuItem value={"stability"}>Stability</MenuItem>
+                <MenuItem value={"cardio"}>Cardio</MenuItem>
+              </Select>
+              <FormHelperText>Training Style</FormHelperText>
+            </FormControl>
+            {/* * * * * ADD EACH EXERCISE * * * * */}
+            <div className="addExerciseHead">
+              <Typography element="h4" variant="h5">
+                Exercises:
+              </Typography>
+              <Button variant="text" onClick={handleExerciseOpen}>
+                Add
+              </Button>
+            </div>
+            <div className="newExerciseContainer">
+              {exercises.map((exercise, i) => {
+                return (
+                  <Card className="newExercise" key={i}>
+                    <Typography element="h4" variant="button">
+                      {Object.keys(exercise)[0]}
+                    </Typography>
+                    <Typography element="h4" variant="caption">
+                      {exercise[Object.keys(exercise)[0]].sets}
+                    </Typography>
+                    <Typography element="h4" variant="button">
+                      {JSON.stringify(
+                        exercise[Object.keys(exercise)[0]].superset
+                      )}
+                    </Typography>
+                  </Card>
+                );
+              })}
+            </div>
+            <Modal
+              open={exerciseOpen}
+              onClose={handleExerciseClose}
+              aria-labelledby="addExerciseModal"
+            >
+              {/* * * * * * * MODAL FOR EXERCISE * * * * * */}
+              <Box className="addExerciseModal">
+                <Typography id="exerciseModalTitle" variant="h6" component="h2">
+                  Add Exercise
+                </Typography>
+                <form
                   style={{
                     display: "flex",
-                    justifyContent: "space-around",
                     alignItems: "center",
+                    flexDirection: "column",
                   }}
                 >
-                  <Typography element="h5" variant="caption">
-                    Superset with previous?
-                  </Typography>
-                  <Checkbox
-                    checked={superset}
-                    onChange={handleCheck}
-                    aria-label="superset"
+                  <TextField
+                    id="exerciseName"
+                    label="Exercise Name"
+                    variant="standard"
+                    style={{ width: "90%" }}
+                    value={newExerciseName}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setNewExerciseName(e.target.value);
+                    }}
                   />
-                </div>
-                <Card className="exerciseSetsCard">
-                  <div className="cardHead">
-                    <Typography element="h3" variant="subtitle1">
-                      Set
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography element="h5" variant="caption">
+                      Superset with previous?
                     </Typography>
-                    <Typography element="h3" variant="subtitle1">
-                      Reps
-                    </Typography>
-                    <Typography element="h3" variant="subtitle1">
-                      Weight
-                    </Typography>
-                  </div>
-                  {newExerciseSets.map((newSet, i) => {
-                    return (
-                      <div className="cardHead" key={i}>
-                        <Typography element="h4" variant="h5" color="primary">
-                          {i + 1}
-                        </Typography>
-                        <Typography element="h4" variant="h5" color="primary">
-                          {newSet[0]}
-                        </Typography>
-                        <Typography element="h4" variant="h5" color="primary">
-                          {newSet[1]}
-                        </Typography>
-                      </div>
-                    );
-                  })}
-                  <div className="cardHead">
-                    <Typography element="h3" variant="h4" color="secondary">
-                      {newExerciseSets.length + 1}
-                    </Typography>
-                    <TextField
-                      id="newSetReps"
-                      variant="outlined"
-                      className="setRW"
-                      value={newSetReps}
-                      onChange={handleSetRepsChange}
-                    />
-                    <TextField
-                      id="newSetWeight"
-                      variant="outlined"
-                      className="setRW"
-                      value={newSetWeight}
-                      onChange={handleSetWeightChange}
+                    <Checkbox
+                      checked={superset}
+                      onChange={handleCheck}
+                      aria-label="superset"
                     />
                   </div>
+                  <Card className="exerciseSetsCard">
+                    <div className="cardHead">
+                      <Typography element="h3" variant="subtitle1">
+                        Set
+                      </Typography>
+                      <Typography element="h3" variant="subtitle1">
+                        Reps
+                      </Typography>
+                      <Typography element="h3" variant="subtitle1">
+                        Weight
+                      </Typography>
+                    </div>
+                    {newExerciseSets.map((newSet, i) => {
+                      return (
+                        <div className="cardHead" key={i}>
+                          <Typography element="h4" variant="h5" color="primary">
+                            {i + 1}
+                          </Typography>
+                          <Typography element="h4" variant="h5" color="primary">
+                            {newSet[0]}
+                          </Typography>
+                          <Typography element="h4" variant="h5" color="primary">
+                            {newSet[1]}
+                          </Typography>
+                        </div>
+                      );
+                    })}
+                    <div className="cardHead">
+                      <Typography element="h3" variant="h4" color="secondary">
+                        {newExerciseSets.length + 1}
+                      </Typography>
+                      <TextField
+                        id="newSetReps"
+                        variant="outlined"
+                        className="setRW"
+                        value={newSetReps}
+                        onChange={handleSetRepsChange}
+                      />
+                      <TextField
+                        id="newSetWeight"
+                        variant="outlined"
+                        className="setRW"
+                        value={newSetWeight}
+                        onChange={handleSetWeightChange}
+                      />
+                    </div>
 
-                  <Button onClick={addNewSet}>Add Set</Button>
-                </Card>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  style={{ marginBottom: "24px" }}
-                  onClick={addExerciseToWorkout}
-                >
-                  Add Exercise
-                </Button>
-              </form>
-            </Box>
-          </Modal>
-          <Button fullWidth onClick={addWorkoutToLog}>
-            ADD TO LOG
-          </Button>
-        </div>
-        <div className="addWorkoutFoot"></div>
-      </Card>
+                    <Button onClick={addNewSet}>Add Set</Button>
+                  </Card>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    style={{ marginBottom: "24px" }}
+                    onClick={addExerciseToWorkout}
+                  >
+                    Add Exercise
+                  </Button>
+                </form>
+              </Box>
+            </Modal>
+            <Button fullWidth onClick={addWorkoutToLog}>
+              ADD TO LOG
+            </Button>
+          </div>
+          <div className="addWorkoutFoot"></div>
+        </Card>
+      </div>
     </div>
   );
 };
