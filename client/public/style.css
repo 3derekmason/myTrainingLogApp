@@ -23,7 +23,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  background: url(./assets/signupLogs.jpg);
+  background: url(./assets/loginLogs.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -55,7 +55,83 @@ body {
   display: flex;
 }
 
+/* Appbar */
+
+.appbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appbar button {
+  color: #efebe9;
+}
+
+/* Landing Component */
+
+.landingPage {
+  background: url(./assets/landing.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.landingContainer {
+  width: 640px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.landingHead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.landingPaths {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* LastWorkout Component */
+
+.workoutSummary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lastWorkoutCard {
+  margin-bottom: 40px;
+}
+
 /* UserLog Componenet */
+
+.userLogPage {
+  background: url(./assets/signupLogs.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.userLogContainer {
+  width: 640px;
+  height: 100%;
+  overflow: scroll;
+}
 
 .workoutLogCard {
   display: flex;

@@ -19,10 +19,9 @@ import AppContext from "../context.js";
 const buildDate = (dateString) => {
   const splitDate = dateString.split("T");
   const splitDigits = splitDate[0].split("-");
-  const year = splitDigits[0];
   const month = splitDigits[1];
   const day = splitDigits[2];
-  return `${month}/${day}/${year}`;
+  return `${month}/${day}`;
 };
 
 const LastWorkout = () => {
@@ -65,25 +64,24 @@ const LastWorkout = () => {
 
   return (
     <div className="workoutSummary">
-      <Card className="lastWorkoutCard">
+      <Card className="lastWorkoutCard" style={{ background: "#efebe9" }}>
         <CardHeader
-          title="Summary of Most Recent Workout:"
+          color="primary"
+          title="Most Recent Workout:"
           subheader={lastWorkout[0]?.type.toUpperCase()}
         />
 
         <CardContent>
           <Typography variant="caption" component="p">
-            Last workout logged:
+            Last workout summary:
           </Typography>
-          <Typography component="p" variant="h6">
+          <Typography color="primary" component="p" variant="h6">
             On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}
             {Object.keys(lastWorkout?.[0].exercises).length} exercises
           </Typography>
         </CardContent>
-        <Typography component="p" variant="caption">
-          See more:
-        </Typography>
         <CardActions disableSpacing>
+          View:
           <IconButton
             onClick={handleExpandClick}
             aria-expanded={expanded}

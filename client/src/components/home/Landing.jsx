@@ -9,6 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 import LastWorkout from "./LastWorkout.jsx";
@@ -77,11 +78,11 @@ const Landing = () => {
     );
   }
   return (
-    <div className="landingPage">
+    <div>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className="appbar">
           <Typography element="h5" variant="h5">
-            <FitnessCenterIcon></FitnessCenterIcon> MTLA
+            <FitnessCenterIcon /> MTLA
           </Typography>
           <Button
             onClick={(e) => {
@@ -93,32 +94,58 @@ const Landing = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Card className="landingContainer">
-        <div className="landingHead">
-          <Typography element="h3" variant="h5">
-            Welcome, {currentUser?.username}!
-          </Typography>
-          <Typography element="h5" variant="caption">
-            {currentDate}
-          </Typography>
-        </div>
-        <div className="landingPaths">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setOpenUserLog(true);
-            }}
-          >
-            USER LOG
-          </Button>
-          <Link to="/addworkout">
-            <Button>ADD WORKOUT</Button>
-          </Link>
-        </div>
-        <div className="landingFoot">
+      <div className="landingPage">
+        <Card className="landingContainer">
+          <div className="landingHead">
+            <Typography
+              element="h3"
+              variant="h5"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "8px",
+                color: "#3e2723",
+              }}
+            >
+              Welcome,{" "}
+              <div style={{ letterSpacing: "2px" }} color="primary">
+                {currentUser?.username}
+              </div>
+              !
+            </Typography>
+            <Typography
+              style={{ marginTop: "16px", color: "#827717" }}
+              element="h4"
+              variant="caption"
+            >
+              {currentDate}
+            </Typography>
+          </div>
+          <div className="landingPaths">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenUserLog(true);
+              }}
+              color="primary"
+            >
+              USER LOG
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              color="primary"
+            >
+              THIS WEEK
+            </Button>
+            <Link to="/addworkout" style={{ textDecoration: "none" }}>
+              <Button color="secondary">ADD WORKOUT</Button>
+            </Link>
+          </div>
           <LastWorkout />
-        </div>
-      </Card>
+        </Card>
+      </div>
     </div>
   );
 };
