@@ -64,8 +64,9 @@ const LastWorkout = () => {
 
   return (
     <div className="workoutSummary">
-      <Card className="lastWorkoutCard">
+      <Card className="lastWorkoutCard" style={{ background: "#efebe9" }}>
         <CardHeader
+          color="primary"
           title="Most Recent Workout:"
           subheader={lastWorkout[0]?.type.toUpperCase()}
         />
@@ -74,7 +75,7 @@ const LastWorkout = () => {
           <Typography variant="caption" component="p">
             Last workout summary:
           </Typography>
-          <Typography component="p" variant="h6">
+          <Typography color="primary" component="p" variant="h6">
             On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}
             {Object.keys(lastWorkout?.[0].exercises).length} exercises
           </Typography>

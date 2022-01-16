@@ -166,7 +166,7 @@ const AddWorkout = () => {
       <div className="landingPage">
         <Card className="addWorkoutContainer">
           <div className="landingHead">
-            <Typography element="h3" variant="h5">
+            <Typography element="h3" color="primary" variant="h5">
               Log a workout!
             </Typography>
           </div>
@@ -197,10 +197,14 @@ const AddWorkout = () => {
             </FormControl>
             {/* * * * * ADD EACH EXERCISE * * * * */}
             <div className="addExerciseHead">
-              <Typography element="h4" variant="h5">
+              <Typography element="h4" color="primary" variant="h5">
                 Exercises:
               </Typography>
-              <Button variant="text" onClick={handleExerciseOpen}>
+              <Button
+                variant="text"
+                color="primary"
+                onClick={handleExerciseOpen}
+              >
                 Add
               </Button>
             </div>
@@ -230,7 +234,12 @@ const AddWorkout = () => {
             >
               {/* * * * * * * MODAL FOR EXERCISE * * * * * */}
               <Box className="addExerciseModal">
-                <Typography id="exerciseModalTitle" variant="h6" component="h2">
+                <Typography
+                  id="exerciseModalTitle"
+                  color="primary"
+                  variant="h6"
+                  component="h2"
+                >
                   Add Exercise
                 </Typography>
                 <form
@@ -314,7 +323,9 @@ const AddWorkout = () => {
                       />
                     </div>
 
-                    <Button onClick={addNewSet}>Add Set</Button>
+                    <Button color="primary" onClick={addNewSet}>
+                      Add Set
+                    </Button>
                   </Card>
                   <Button
                     variant="outlined"

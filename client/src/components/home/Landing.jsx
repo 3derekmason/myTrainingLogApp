@@ -100,10 +100,15 @@ const Landing = () => {
             <Typography
               element="h3"
               variant="h5"
-              style={{ display: "flex", flexDirection: "row", gap: "8px" }}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "8px",
+                color: "#3e2723",
+              }}
             >
               Welcome,{" "}
-              <div style={{ fontVariant: "small-caps" }}>
+              <div style={{ fontVariant: "small-caps" }} color="primary">
                 {currentUser?.username}
               </div>
               !
