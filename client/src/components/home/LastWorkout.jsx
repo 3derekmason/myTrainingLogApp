@@ -67,13 +67,13 @@ const LastWorkout = () => {
     <div className="workoutSummary">
       <Card className="lastWorkoutCard">
         <CardHeader
-          title="Summary of Most Recent Workout:"
+          title="Most Recent Workout:"
           subheader={lastWorkout[0]?.type.toUpperCase()}
         />
 
         <CardContent>
           <Typography variant="caption" component="p">
-            Last workout logged:
+            Last workout summary:
           </Typography>
           <Typography component="p" variant="h6">
             On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}

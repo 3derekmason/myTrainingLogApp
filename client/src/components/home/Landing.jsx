@@ -9,7 +9,6 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 import LastWorkout from "./LastWorkout.jsx";
 
@@ -81,7 +80,7 @@ const Landing = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography element="h5" variant="h5">
-            <FitnessCenterIcon></FitnessCenterIcon> MTLA
+            [] MTLA
           </Typography>
           <Button
             onClick={(e) => {
@@ -115,9 +114,7 @@ const Landing = () => {
             <Button>ADD WORKOUT</Button>
           </Link>
         </div>
-        <div className="landingFoot">
-          <LastWorkout />
-        </div>
+        <LastWorkout />
       </Card>
     </div>
   );

@@ -55,6 +55,39 @@ body {
   display: flex;
 }
 
+/* Landing Component */
+
+.landingContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.landingHead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.landingPaths {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* LastWorkout Component */
+
+.workoutSummary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lastWorkoutCard {
+  margin-bottom: 40px;
+}
+
 /* UserLog Componenet */
 
 .workoutLogCard {
