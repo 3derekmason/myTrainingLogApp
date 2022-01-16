@@ -19,10 +19,9 @@ import AppContext from "../context.js";
 const buildDate = (dateString) => {
   const splitDate = dateString.split("T");
   const splitDigits = splitDate[0].split("-");
-  const year = splitDigits[0];
   const month = splitDigits[1];
   const day = splitDigits[2];
-  return `${month}/${day}/${year}`;
+  return `${month}/${day}`;
 };
 
 const LastWorkout = () => {
@@ -80,10 +79,8 @@ const LastWorkout = () => {
             {Object.keys(lastWorkout?.[0].exercises).length} exercises
           </Typography>
         </CardContent>
-        <Typography component="p" variant="caption">
-          See more:
-        </Typography>
         <CardActions disableSpacing>
+          View:
           <IconButton
             onClick={handleExpandClick}
             aria-expanded={expanded}

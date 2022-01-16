@@ -76,7 +76,7 @@ const Landing = () => {
     );
   }
   return (
-    <div className="landingPage">
+    <div>
       <AppBar position="static">
         <Toolbar>
           <Typography element="h5" variant="h5">
@@ -92,30 +92,40 @@ const Landing = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Card className="landingContainer">
-        <div className="landingHead">
-          <Typography element="h3" variant="h5">
-            Welcome, {currentUser?.username}!
-          </Typography>
-          <Typography element="h5" variant="caption">
-            {currentDate}
-          </Typography>
-        </div>
-        <div className="landingPaths">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setOpenUserLog(true);
-            }}
-          >
-            USER LOG
-          </Button>
-          <Link to="/addworkout">
-            <Button>ADD WORKOUT</Button>
-          </Link>
-        </div>
-        <LastWorkout />
-      </Card>
+      <div className="landingPage">
+        <Card className="landingContainer">
+          <div className="landingHead">
+            <Typography
+              element="h3"
+              variant="h5"
+              style={{ display: "flex", flexDirection: "row", gap: "8px" }}
+            >
+              Welcome,{" "}
+              <div style={{ fontVariant: "small-caps" }}>
+                {currentUser?.username}
+              </div>
+              !
+            </Typography>
+            <Typography element="h5" variant="caption">
+              {currentDate}
+            </Typography>
+          </div>
+          <div className="landingPaths">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenUserLog(true);
+              }}
+            >
+              USER LOG
+            </Button>
+            <Link to="/addworkout">
+              <Button>ADD WORKOUT</Button>
+            </Link>
+          </div>
+          <LastWorkout />
+        </Card>
+      </div>
     </div>
   );
 };
