@@ -60,7 +60,12 @@ const Profile = () => {
       </AppBar>
       <div className="loginPage">
         <Paper className="loginContainer" elevation={8}>
-          {currentUser?.username}
+          <div className="profilePageHead">
+            <Typography element="h4" variant="subtitle2">
+              {currentUser?.username}
+            </Typography>
+            <Button>Edit Profile</Button>
+          </div>
           <Card className="userTotalWorkouts">
             <Typography style={{ fontSize: growCount, fontWeight: "bold" }}>
               {userWorkouts?.length}
