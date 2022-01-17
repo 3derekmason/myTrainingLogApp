@@ -52,7 +52,10 @@ const UserLog = () => {
       </AppBar>
       <div className="userLogPage">
         <Paper className="userLogContainer">
-          <div className="userLogTopBar">
+          <div
+            className="userLogTopBar"
+            style={{ marginTop: "32px", textAlign: "center" }}
+          >
             <Typography element="h3" variand="h3">
               {currentUser?.username}'s Log
             </Typography>
@@ -64,15 +67,15 @@ const UserLog = () => {
             let formatDate = splitDate?.split("-");
             return (
               <Card className="workoutLogCard" key={i}>
-                <div className="logCardLeft">
-                  <Typography element="h5" variant="h5">
+                <div className="logCardHead">
+                  <Typography color="primary" element="h5" variant="h5">
                     {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
                   </Typography>
-                  <Typography element="h5" variant="subtitle1">
+                  <Typography color="primary" element="h5" variant="h4">
                     {workout?.type}
                   </Typography>
                 </div>
-                <div className="logCardRight">
+                <div className="logCardBody">
                   {workout?.exercises.map((exercise, i) => {
                     return (
                       <div className="logExercise" key={i}>
@@ -84,7 +87,9 @@ const UserLog = () => {
                             (set, i) => {
                               return (
                                 <li key={i}>
-                                  {set[0]} reps at {set[1]}
+                                  <Typography element="h6" variant="caption">
+                                    {set[0]} reps at {set[1]}
+                                  </Typography>
                                 </li>
                               );
                             }

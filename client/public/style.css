@@ -133,22 +133,39 @@ body {
 .userLogContainer {
   width: 640px;
   height: 100%;
-  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .workoutLogCard {
   display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
   gap: 16px;
   font-variant: small-caps;
+  margin-bottom: 24px;
 }
 
-.logCardLeft {
+.logCardHead {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
 }
-.logCardRight {
+.logCardBody {
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.logExercise {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 32px;
+  margin-right: 32px;
 }
 
 .logExercise ul {
@@ -164,7 +181,7 @@ body {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: column;
   flex-direction: column;
   gap: 20px;
 }
