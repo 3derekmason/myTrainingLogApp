@@ -128,10 +128,30 @@ body {
   margin-bottom: 40px;
 }
 
+/* ProfilePage Component */
+.profilePageHead {
+  width: 90%;
+  margin-left: 24px;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userTotalWorkouts {
+  width: 95%;
+  height: 116px;
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
 /* UserLog Componenet */
 
 .userLogPage {
-  background: url(./assets/signupLogs.jpg);
+  background: url(./assets/landing.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
