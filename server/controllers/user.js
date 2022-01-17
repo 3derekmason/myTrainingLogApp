@@ -40,7 +40,6 @@ module.exports = {
     doc.userId = userId + 1;
     doc.username = req.body.username;
     doc.password = req.body.password;
-
     doc.save();
     res.status(201).send(doc);
   },

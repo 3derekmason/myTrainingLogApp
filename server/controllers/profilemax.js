@@ -29,4 +29,16 @@ module.exports = {
       res.status(500).send(e);
     }
   },
+  updateMaxObject: async (req, res) => {
+    try {
+      const maxObject = await ProfileMax.updateOne(
+        { userId: Number(req.body.userId) },
+        { $set: { [req.body.field]: Number(req.body.max) } },
+        { upsert: true }
+      );
+      res.status(201).send(maxObject);
+    } catch (e) {
+      res.status(500).send(e);
+    }
+  },
 };
