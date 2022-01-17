@@ -5,6 +5,7 @@ import Landing from "./home/Landing.jsx";
 import Login from "./home/Login.jsx";
 import SignUp from "./home/SignUp.jsx";
 import UserLog from "./user/UserLog.jsx";
+import Profile from "./user/Profile.jsx";
 
 import AppContext from "./context.js";
 import AddWorkout from "./main/AddWorkout.jsx";
@@ -29,6 +30,7 @@ const App = () => {
           <Route exact path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/landing" element={<Landing />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/userlog" element={<UserLog />} />
           <Route path="/addworkout" element={<AddWorkout />} />
         </Routes>
