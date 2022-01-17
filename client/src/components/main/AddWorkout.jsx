@@ -46,6 +46,7 @@ const AddWorkout = () => {
   const handleExerciseClose = () => setExerciseOpen(false);
 
   const [afterSubmit, setAfterSubmit] = useState(false);
+  const [navigateProfile, setNavigateProfile] = useState(false);
 
   const handleCheck = (e) => {
     e.preventDefault();
@@ -144,6 +145,9 @@ const AddWorkout = () => {
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
+  if (navigateProfile) {
+    return <Navigate to="/profile" />;
+  }
   if (afterSubmit) {
     return <Navigate to="/landing" />;
   }
@@ -160,14 +164,26 @@ const AddWorkout = () => {
               <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentUser(null);
-            }}
-          >
-            LOGOUT
-          </Button>
+          <div>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setNavigateProfile(true);
+              }}
+            >
+              PROFILE
+            </Button>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentUser(null);
+              }}
+            >
+              LOGOUT
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <div className="landingPage">

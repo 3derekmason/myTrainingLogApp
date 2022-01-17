@@ -13,6 +13,7 @@ import {
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 import LastWorkout from "./LastWorkout.jsx";
+import Profile from "../user/Profile.jsx";
 
 const Landing = () => {
   const {
@@ -24,6 +25,7 @@ const Landing = () => {
     setUserWorkouts,
   } = React.useContext(AppContext);
 
+  const [navigateProfile, setNavigateProfile] = useState(false);
   const [openUserLog, setOpenUserLog] = useState(false);
   const [currentDate, setCurrentDate] = useState(
     new Intl.DateTimeFormat("en-GB", {
@@ -69,6 +71,9 @@ const Landing = () => {
   if (openUserLog) {
     return <Navigate to="/userlog" />;
   }
+  if (navigateProfile) {
+    return <Navigate to="/profile" />;
+  }
   if (!userWorkouts) {
     return (
       <div>
@@ -76,21 +81,34 @@ const Landing = () => {
       </div>
     );
   }
+
   return (
     <div>
       <AppBar position="static">
         <Toolbar className="appbar">
-          <Typography element="h5" variant="h5">
+          <Typography className="appbarButton" element="h5" variant="h5">
             <FitnessCenterIcon /> MTLA
           </Typography>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentUser(null);
-            }}
-          >
-            LOGOUT
-          </Button>
+          <div>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setNavigateProfile(true);
+              }}
+            >
+              PROFILE
+            </Button>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentUser(null);
+              }}
+            >
+              LOGOUT
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <div className="landingPage">

@@ -17,11 +17,15 @@ const UserLog = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
     React.useContext(AppContext);
   const [openUserLog, setOpenUserLog] = useState(false);
+  const [navigateProfile, setNavigateProfile] = useState(false);
 
   useEffect(() => {}, [currentUser]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
+  }
+  if (navigateProfile) {
+    return <Navigate to="/profile" />;
   }
   if (!userWorkouts) {
     return (
@@ -40,14 +44,26 @@ const UserLog = () => {
               <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentUser(null);
-            }}
-          >
-            LOGOUT
-          </Button>
+          <div>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setNavigateProfile(true);
+              }}
+            >
+              PROFILE
+            </Button>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentUser(null);
+              }}
+            >
+              LOGOUT
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <div className="userLogPage">

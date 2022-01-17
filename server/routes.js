@@ -5,8 +5,11 @@ router.post("/users/signup", controller.user.addNewUser);
 router.post("/users/login", controller.user.loginUser);
 
 router.post("/workouts", controller.workout.addWorkout);
-
 router.get("/workouts", controller.workout.getUserWorkouts);
+
+router.get("/profileMax", controller.profileMax.getUserMaxObject);
+router.put("/profileMax", controller.profileMax.updateMaxObject);
+
 router.get("/recent", controller.workout.getLastWorkout);
 
 module.exports = router;
