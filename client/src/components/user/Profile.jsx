@@ -16,7 +16,7 @@ import AppContext from "../context.js";
 const Profile = () => {
   const { currentUser, setCurrentUser, userWorkouts } =
     React.useContext(AppContext);
-
+  const [openUserLog, setOpenUserLog] = useState(false);
   const [growCount, setGrowCount] = useState("16px");
 
   useEffect(() => {
@@ -31,6 +31,9 @@ const Profile = () => {
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
+  }
+  if (openUserLog) {
+    return <Navigate to="/userlog" />;
   }
 
   return (
@@ -58,13 +61,23 @@ const Profile = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <div className="loginPage">
+      <div className="landingPage">
         <Paper className="loginContainer" elevation={8}>
           <div className="profilePageHead">
-            <Typography element="h4" variant="subtitle2">
+            <Typography color="primary" element="h4" variant="subtitle2">
               {currentUser?.username}
             </Typography>
-            <Button>Edit Profile</Button>
+            <div style={{ display: "flex", gap: "8px" }}>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenUserLog(true);
+                }}
+              >
+                User Log
+              </Button>
+              <Button>This Week</Button>
+            </div>
           </div>
           <Card className="userTotalWorkouts">
             <Typography
