@@ -61,7 +61,7 @@ const Profile = () => {
       <div className="loginPage">
         <Paper className="loginContainer" elevation={8}>
           {currentUser?.username}
-          <Card style={{ display: "flex", justifyContent: "space-around" }}>
+          <Card className="userTotalWorkouts">
             <Typography style={{ fontSize: growCount, fontWeight: "bold" }}>
               {userWorkouts?.length}
             </Typography>
