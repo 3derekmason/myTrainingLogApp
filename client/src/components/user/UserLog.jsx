@@ -51,15 +51,16 @@ const UserLog = () => {
         </Toolbar>
       </AppBar>
       <div className="userLogPage">
-        <Paper className="userLogContainer">
+        <Paper className="userLogContainer" elevation={8}>
           <div
             className="userLogTopBar"
             style={{ marginTop: "32px", textAlign: "center" }}
           >
             <Typography
               element="h3"
-              variand="h3"
-              style={{ marginBottom: "16px" }}
+              variant="h4"
+              color="primary"
+              style={{ marginBottom: "16px", letterSpacing: "2px" }}
             >
               {currentUser?.username}'s Log
             </Typography>
@@ -70,7 +71,11 @@ const UserLog = () => {
             let splitDate = workout?.date?.split("T")[0];
             let formatDate = splitDate?.split("-");
             return (
-              <Card className="workoutLogCard" key={i}>
+              <Card
+                className="workoutLogCard"
+                key={i}
+                style={{ color: "#3e2723" }}
+              >
                 <div className="logCardHead">
                   <Typography color="primary" element="h5" variant="h5">
                     {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
