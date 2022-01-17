@@ -14,7 +14,8 @@ import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 
 const Profile = () => {
-  const { currentUser, setCurrentUser } = React.useContext(AppContext);
+  const { currentUser, setCurrentUser, userWorkouts } =
+    React.useContext(AppContext);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
@@ -47,6 +48,14 @@ const Profile = () => {
       <div className="profilePage">
         <Paper className="profileContainer" elevation={8}>
           {currentUser?.username}
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(userWorkouts.length);
+            }}
+          >
+            TEST
+          </Button>
         </Paper>
       </div>
     </div>
