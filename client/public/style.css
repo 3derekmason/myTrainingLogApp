@@ -131,7 +131,9 @@ body {
 /* ProfilePage Component */
 
 .userTotalWorkouts {
-  margin: 8px;
+  width: 95%;
+  height: 116px;
+  margin: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
