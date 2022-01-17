@@ -56,7 +56,11 @@ const UserLog = () => {
             className="userLogTopBar"
             style={{ marginTop: "32px", textAlign: "center" }}
           >
-            <Typography element="h3" variand="h3">
+            <Typography
+              element="h3"
+              variand="h3"
+              style={{ marginBottom: "16px" }}
+            >
               {currentUser?.username}'s Log
             </Typography>
           </div>
