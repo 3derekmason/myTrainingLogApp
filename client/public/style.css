@@ -70,6 +70,16 @@ body {
 .appbar button {
   color: #efebe9;
 }
+.appbarButton {
+  color: #efebe9;
+  transition: 0.33s;
+}
+
+.appbarButton:hover {
+  color: #bf360c;
+  cursor: pointer;
+  transition: 0.33s;
+}
 
 /* Landing Component */
 

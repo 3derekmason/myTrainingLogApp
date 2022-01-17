@@ -80,17 +80,28 @@ const Landing = () => {
     <div>
       <AppBar position="static">
         <Toolbar className="appbar">
-          <Typography element="h5" variant="h5">
+          <Typography className="appbarButton" element="h5" variant="h5">
             <FitnessCenterIcon /> MTLA
           </Typography>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentUser(null);
-            }}
-          >
-            LOGOUT
-          </Button>
+          <div>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              PROFILE
+            </Button>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentUser(null);
+              }}
+            >
+              LOGOUT
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <div className="landingPage">
