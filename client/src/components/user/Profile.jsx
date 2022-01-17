@@ -17,9 +17,22 @@ const Profile = () => {
   const { currentUser, setCurrentUser, userWorkouts } =
     React.useContext(AppContext);
 
+  const [growCount, setGrowCount] = useState("16px");
+
+  useEffect(() => {
+    if (userWorkouts?.length < 16) {
+      setGrowCount("16px");
+    } else if (userWorkouts?.length > 100) {
+      setGrowCount("100px");
+    } else {
+      setGrowCount(userWorkouts?.length);
+    }
+  }, [userWorkouts]);
+
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
+
   return (
     <div>
       <AppBar position="static">
@@ -45,17 +58,17 @@ const Profile = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <div className="profilePage">
-        <Paper className="profileContainer" elevation={8}>
+      <div className="loginPage">
+        <Paper className="loginContainer" elevation={8}>
           {currentUser?.username}
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              console.log(userWorkouts.length);
-            }}
-          >
-            TEST
-          </Button>
+          <Card style={{ display: "flex", justifyContent: "space-around" }}>
+            <Typography style={{ fontSize: growCount, fontWeight: "bold" }}>
+              {userWorkouts?.length}
+            </Typography>
+            <Typography element="h5" variant="body2">
+              workouts logged since joining
+            </Typography>
+          </Card>
         </Paper>
       </div>
     </div>
