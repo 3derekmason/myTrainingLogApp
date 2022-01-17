@@ -18,6 +18,20 @@ const Profile = () => {
     React.useContext(AppContext);
   const [openUserLog, setOpenUserLog] = useState(false);
   const [growCount, setGrowCount] = useState("16px");
+  const [userMaxObject, setUserMaxObject] = useState({});
+
+  useEffect(() => {
+    if (currentUser) {
+      fetch(`/api/profileMax/?userId=${currentUser?.userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserMaxObject(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [userMaxObject]);
 
   useEffect(() => {
     if (userWorkouts?.length < 16) {
@@ -76,7 +90,14 @@ const Profile = () => {
               >
                 User Log
               </Button>
-              <Button>This Week</Button>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  console.log(userMaxObject);
+                }}
+              >
+                This Week
+              </Button>
             </div>
           </div>
           <Card className="userTotalWorkouts">
@@ -90,6 +111,7 @@ const Profile = () => {
               workouts logged since joining.
             </Typography>
           </Card>
+          <div className="profileMax"></div>
         </Paper>
       </div>
     </div>
