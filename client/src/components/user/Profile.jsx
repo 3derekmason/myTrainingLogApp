@@ -67,11 +67,14 @@ const Profile = () => {
             <Button>Edit Profile</Button>
           </div>
           <Card className="userTotalWorkouts">
-            <Typography style={{ fontSize: growCount, fontWeight: "bold" }}>
+            <Typography
+              color="secondary"
+              style={{ fontSize: growCount, fontWeight: "bold" }}
+            >
               {userWorkouts?.length}
             </Typography>
-            <Typography element="h5" variant="body2">
-              workouts logged since joining
+            <Typography color="primary" element="h5" variant="body2">
+              workouts logged since joining.
             </Typography>
           </Card>
         </Paper>
