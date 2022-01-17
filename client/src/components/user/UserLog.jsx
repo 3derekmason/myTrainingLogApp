@@ -40,14 +40,25 @@ const UserLog = () => {
               <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentUser(null);
-            }}
-          >
-            LOGOUT
-          </Button>
+          <div>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              PROFILE
+            </Button>
+            <Button
+              className="appbarButton"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentUser(null);
+              }}
+            >
+              LOGOUT
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       <div className="userLogPage">
