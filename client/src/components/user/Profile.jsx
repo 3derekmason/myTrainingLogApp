@@ -16,6 +16,9 @@ import AppContext from "../context.js";
 const Profile = () => {
   const { currentUser, setCurrentUser } = React.useContext(AppContext);
 
+  if (!currentUser || currentUser.message) {
+    return <Navigate to="/" />;
+  }
   return (
     <div>
       <AppBar position="static">

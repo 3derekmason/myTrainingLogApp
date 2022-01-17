@@ -17,11 +17,15 @@ const UserLog = () => {
   const { currentUser, setCurrentUser, userWorkouts, setUserWorkouts } =
     React.useContext(AppContext);
   const [openUserLog, setOpenUserLog] = useState(false);
+  const [navigateProfile, setNavigateProfile] = useState(false);
 
   useEffect(() => {}, [currentUser]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
+  }
+  if (navigateProfile) {
+    return <Navigate to="/profile" />;
   }
   if (!userWorkouts) {
     return (
@@ -45,6 +49,7 @@ const UserLog = () => {
               className="appbarButton"
               onClick={(e) => {
                 e.preventDefault();
+                setNavigateProfile(true);
               }}
             >
               PROFILE
