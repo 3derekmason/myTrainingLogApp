@@ -111,7 +111,11 @@ const Profile = () => {
               workouts logged since joining.
             </Typography>
           </Card>
-          <div className="profileMax"></div>
+          <div className="profileMax">
+            <Typography element="p" variant="subtitle1">
+              Track your 1 Rep Max for the Big 5:
+            </Typography>
+          </div>
         </Paper>
       </div>
     </div>

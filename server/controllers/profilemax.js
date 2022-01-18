@@ -14,7 +14,6 @@ const ProfileMaxSchema = mongoose.Schema({
   "bench press": Number,
   "overhead press": Number,
   "pendlay row": Number,
-  target: Number,
 });
 
 const ProfileMax = mongoose.model("ProfileMax", ProfileMaxSchema, "max");
