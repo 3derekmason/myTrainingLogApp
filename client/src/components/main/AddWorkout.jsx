@@ -70,7 +70,7 @@ const AddWorkout = () => {
 
   const addExerciseToWorkout = (e) => {
     e.preventDefault();
-    if (exercises.length === 0) {
+    if (newExerciseSets.length === 0) {
       handleExerciseClose();
       return;
     }
@@ -86,17 +86,19 @@ const AddWorkout = () => {
     setNewExerciseName("");
     setNewExerciseSets([]);
     setSuperset(false);
+    handleExerciseClose();
   };
 
+  // Workout form helpers
   const handleSetRepsChange = (e) => {
     e.preventDefault();
     setNewSetReps(e.target.value);
   };
+
   const handleSetWeightChange = (e) => {
     e.preventDefault();
     setNewSetWeight(e.target.value);
   };
-  // Workout form helpers
 
   const handleTypeChange = (e) => {
     e.preventDefault();
@@ -138,9 +140,6 @@ const AddWorkout = () => {
     setExercises([]);
     navigateAfterSubmit();
   };
-
-  // Update add sets modal with number of sets stored
-  useEffect(() => {}, [newExerciseSets, exercises]);
 
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
