@@ -164,6 +164,8 @@ const Profile = () => {
             </Typography>
             <div style={{ display: "flex", gap: "8px" }}>
               <Button
+                color="primary"
+                variant="outlined"
                 onClick={(e) => {
                   e.preventDefault();
                   setOpenUserLog(true);
@@ -171,10 +173,12 @@ const Profile = () => {
               >
                 User Log
               </Button>
-              <Button>This Week</Button>
+              <Button color="primary" variant="outlined">
+                This Week
+              </Button>
             </div>
           </div>
-          <Card className="userTotalWorkouts">
+          <Card className="userTotalWorkouts" style={{ background: "#efebe9" }}>
             <Typography
               color="secondary"
               style={{ fontSize: growCount, fontWeight: "bold" }}
@@ -192,7 +196,7 @@ const Profile = () => {
             <Typography element="p" variant="caption">
               Click on any current 1RM to edit.
             </Typography>
-            <Card className="maxContainer">
+            <Card className="maxContainer" style={{ background: "#efebe9" }}>
               {bigFive.map((lift, i) => {
                 if (!userMaxObject?.["bigFive"]?.[lift]) {
                   return (
