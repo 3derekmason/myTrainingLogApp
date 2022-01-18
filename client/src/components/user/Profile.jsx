@@ -13,6 +13,14 @@ import {
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 
+const bigFive = [
+  "back squat",
+  "deadlift",
+  "bench press",
+  "overhead press",
+  "pendlay row",
+];
+
 const Profile = () => {
   const { currentUser, setCurrentUser, userWorkouts } =
     React.useContext(AppContext);
@@ -25,7 +33,7 @@ const Profile = () => {
       fetch(`/api/profileMax/?userId=${currentUser?.userId}`)
         .then((res) => res.json())
         .then((data) => {
-          setUserMaxObject(data);
+          setUserMaxObject(data[0]);
         })
         .catch((err) => {
           console.log(err);
@@ -107,7 +115,7 @@ const Profile = () => {
             >
               {userWorkouts?.length}
             </Typography>
-            <Typography color="primary" element="h5" variant="body2">
+            <Typography color="primary" element="h5" variant="caption">
               workouts logged since joining.
             </Typography>
           </Card>
@@ -115,6 +123,39 @@ const Profile = () => {
             <Typography element="p" variant="subtitle1">
               Track your 1 Rep Max for the Big 5:
             </Typography>
+            {bigFive.map((lift, i) => {
+              if (!userMaxObject[lift]) {
+                return (
+                  <Card key={i}>
+                    <Typography element="h6" variant="subtitle1">
+                      {lift.toUpperCase()}
+                    </Typography>
+                    <Typography element="h5" variant="button">
+                      0
+                    </Typography>
+                  </Card>
+                );
+              } else {
+                return (
+                  <Card key={i}>
+                    <Typography element="h6" variant="subtitle1">
+                      {lift.toUpperCase()}
+                    </Typography>
+                    <Typography element="h5" variant="button">
+                      {userMaxObject[lift]}
+                    </Typography>
+                  </Card>
+                );
+              }
+            })}
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                console.log(userMaxObject);
+              }}
+            >
+              USER MAX OBJECT
+            </Button>
           </div>
         </Paper>
       </div>
