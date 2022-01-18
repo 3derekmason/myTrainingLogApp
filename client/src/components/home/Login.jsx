@@ -60,7 +60,7 @@ const Login = () => {
           <Typography component="h3" variant="h5">
             My Training Log App
           </Typography>
-          <FitnessCenterIcon style={{ fontSize: "64px" }} />
+          <FitnessCenterIcon color="primary" style={{ fontSize: "64px" }} />
           <Typography component="h3" variant="subtitle1">
             Log in to your log...
           </Typography>

@@ -3,6 +3,8 @@ import React, { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import AppContext from "../context.js";
 
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+
 const SignUp = () => {
   const { currentUser, setCurrentUser } = useContext(AppContext);
   const defaultValues = {
@@ -61,10 +63,11 @@ const SignUp = () => {
   return (
     <div className="signupPage">
       <Card className="loginContainer">
-        <div className="signupHead">
-          <Typography component="h2" variant="h3" color="primary">
+        <div className="loginHead">
+          <Typography component="h3" variant="h4">
             Create A Profile
           </Typography>
+          <PersonOutlineIcon style={{ fontSize: "40px" }} color="primary" />
         </div>
         <div className="loginForm">
           <form onSubmit={handleSubmit}>
@@ -98,12 +101,7 @@ const SignUp = () => {
             <Typography component="h6" variant="caption">
               * required field
             </Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              fullWidth
-              type="submit"
-            >
+            <Button variant="contained" color="primary" fullWidth type="submit">
               Sign Up!
             </Button>
           </form>
