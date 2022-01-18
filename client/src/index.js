@@ -15,7 +15,7 @@ const theme = createTheme({
       main: "#9C6C58",
     },
     cards: {
-      main: "#EDE9D0",
+      main: "#FCFAEE",
     },
   },
 });
