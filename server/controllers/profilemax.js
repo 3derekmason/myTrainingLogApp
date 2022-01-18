@@ -9,12 +9,7 @@ mongoose.connect("mongodb://localhost:27017/mtla", {
 const ProfileMaxSchema = mongoose.Schema({
   _id: mongoose.ObjectId,
   userId: Number,
-  "back squat": Number,
-  deadlift: Number,
-  "bench press": Number,
-  "overhead press": Number,
-  "pendlay row": Number,
-  target: Number,
+  bigFive: {},
 });
 
 const ProfileMax = mongoose.model("ProfileMax", ProfileMaxSchema, "max");
@@ -33,7 +28,7 @@ module.exports = {
     try {
       const maxObject = await ProfileMax.updateOne(
         { userId: Number(req.body.userId) },
-        { $set: { [req.body.field]: Number(req.body.max) } },
+        { $set: { bigFive: req.body.newBigFive } },
         { upsert: true }
       );
       res.status(201).send(maxObject);

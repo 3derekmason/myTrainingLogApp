@@ -3,29 +3,110 @@ import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import {
   AppBar,
+  Box,
   Button,
   Card,
   Container,
+  IconButton,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  Modal,
   Paper,
+  Select,
   Toolbar,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import AppContext from "../context.js";
 
+const bigFive = [
+  "back squat",
+  "deadlift",
+  "bench press",
+  "overhead press",
+  "pendlay row",
+];
+const defaultValues = {
+  "back squat": "",
+  deadlift: "",
+  "bench press": "",
+  "overhead press": "",
+  "pendlay row": "",
+};
+
 const Profile = () => {
   const { currentUser, setCurrentUser, userWorkouts } =
     React.useContext(AppContext);
   const [openUserLog, setOpenUserLog] = useState(false);
+  const [maxModalOpen, setMaxModalOpen] = useState(false);
+  const maxModalClose = () => setMaxModalOpen(false);
   const [growCount, setGrowCount] = useState("16px");
   const [userMaxObject, setUserMaxObject] = useState({});
+  const [formValues, setFormValues] = useState(defaultValues);
+
+  const handleNewMaxChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const buildNewUserMaxObject = (formValuesObject) => {
+    const newUserMaxObject = userMaxObject?.["bigFive"]
+      ? userMaxObject?.["bigFive"]
+      : defaultValues;
+    bigFive.forEach((lift) => {
+      if (!userMaxObject?.["bigFive"]?.[lift]) {
+        newUserMaxObject[lift] = 0;
+      }
+      if (formValues[lift] !== "") {
+        newUserMaxObject[lift] = Number(formValues[lift]);
+      }
+    });
+    return newUserMaxObject;
+  };
+
+  const updateUserMaxCollection = (e) => {
+    e.preventDefault();
+    const newMaxCollection = buildNewUserMaxObject(formValues);
+    fetch("/api/profileMax/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: Number(currentUser.userId),
+        newBigFive: newMaxCollection,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    fetch(`/api/profileMax/?userId=${currentUser?.userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserMaxObject(data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    maxModalClose();
+  };
 
   useEffect(() => {
     if (currentUser) {
       fetch(`/api/profileMax/?userId=${currentUser?.userId}`)
         .then((res) => res.json())
         .then((data) => {
-          setUserMaxObject(data);
+          setUserMaxObject(data[0]);
         })
         .catch((err) => {
           console.log(err);
@@ -90,14 +171,7 @@ const Profile = () => {
               >
                 User Log
               </Button>
-              <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log(userMaxObject);
-                }}
-              >
-                This Week
-              </Button>
+              <Button>This Week</Button>
             </div>
           </div>
           <Card className="userTotalWorkouts">
@@ -107,11 +181,94 @@ const Profile = () => {
             >
               {userWorkouts?.length}
             </Typography>
-            <Typography color="primary" element="h5" variant="body2">
+            <Typography color="primary" element="h5" variant="caption">
               workouts logged since joining.
             </Typography>
           </Card>
-          <div className="profileMax"></div>
+          <div className="profileMax">
+            <Typography element="p" variant="body1">
+              Track your 1 Rep Max for the Big 5:
+            </Typography>
+            <Typography element="p" variant="caption">
+              Click on any current 1RM to edit.
+            </Typography>
+            <Card className="maxContainer">
+              {bigFive.map((lift, i) => {
+                if (!userMaxObject?.["bigFive"]?.[lift]) {
+                  return (
+                    <div key={i} className="bigFiveRow">
+                      <Typography element="h6" variant="subtitle1">
+                        {lift.toUpperCase()}
+                      </Typography>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMaxModalOpen(true);
+                        }}
+                      >
+                        0
+                      </Button>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={i} className="bigFiveRow">
+                      <Typography
+                        color="primary"
+                        element="h6"
+                        variant="subtitle1"
+                      >
+                        {lift.toUpperCase()}
+                      </Typography>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMaxModalOpen(true);
+                        }}
+                      >
+                        {userMaxObject?.["bigFive"]?.[lift]}
+                      </Button>
+                    </div>
+                  );
+                }
+              })}
+            </Card>
+            <Modal
+              open={maxModalOpen}
+              onClose={maxModalClose}
+              aria-labelledby="newMaxModal"
+            >
+              <Paper className="newMaxModal">
+                <Typography
+                  id="newMaxModalTitle"
+                  color="primary"
+                  variant="h6"
+                  component="h2"
+                >
+                  Congrats! Enter your new 1RM below:
+                </Typography>
+                {bigFive.map((lift, i) => {
+                  return (
+                    <div key={i}>
+                      <TextField
+                        id="newMaxWeight"
+                        name={lift}
+                        label={lift.toUpperCase()}
+                        variant="standard"
+                        value={formValues[lift]}
+                        placeholder={
+                          JSON.stringify(userMaxObject?.["bigFive"]?.[lift]) ||
+                          "0"
+                        }
+                        onChange={handleNewMaxChange}
+                      />
+                    </div>
+                  );
+                })}
+                <Button onClick={updateUserMaxCollection}>UPDATE</Button>
+              </Paper>
+            </Modal>
+          </div>
         </Paper>
       </div>
     </div>
