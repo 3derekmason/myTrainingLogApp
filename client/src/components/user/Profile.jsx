@@ -237,15 +237,20 @@ const Profile = () => {
               open={maxModalOpen}
               onClose={maxModalClose}
               aria-labelledby="newMaxModal"
+              className="newMaxModal"
             >
-              <Paper className="newMaxModal">
+              <Paper className="newMaxModalContainer">
                 <Typography
                   id="newMaxModalTitle"
                   color="primary"
                   variant="h6"
                   component="h2"
+                  style={{ marginTop: "24px" }}
                 >
-                  Congrats! Enter your new 1RM below:
+                  Congrats, {currentUser.username}!
+                </Typography>
+                <Typography color="secondary" component="p" variant="caption">
+                  Enter your new 1RM below:
                 </Typography>
                 {bigFive.map((lift, i) => {
                   return (
@@ -254,7 +259,7 @@ const Profile = () => {
                         id="newMaxWeight"
                         name={lift}
                         label={lift.toUpperCase()}
-                        variant="standard"
+                        variant="outlined"
                         value={formValues[lift]}
                         placeholder={
                           JSON.stringify(userMaxObject?.["bigFive"]?.[lift]) ||
@@ -265,7 +270,14 @@ const Profile = () => {
                     </div>
                   );
                 })}
-                <Button onClick={updateUserMaxCollection}>UPDATE</Button>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={updateUserMaxCollection}
+                >
+                  UPDATE
+                </Button>
               </Paper>
             </Modal>
           </div>
