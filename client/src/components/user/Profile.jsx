@@ -79,7 +79,7 @@ const Profile = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: Number(newMaxCollection.userId),
+        userId: Number(currentUser.userId),
         newBigFive: newMaxCollection,
       }),
     })
@@ -89,6 +89,14 @@ const Profile = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
+      });
+    fetch(`/api/profileMax/?userId=${currentUser?.userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserMaxObject(data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     maxModalClose();
   };
@@ -249,14 +257,6 @@ const Profile = () => {
                   );
                 })}
                 <Button onClick={updateUserMaxCollection}>UPDATE</Button>
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    console.log(buildNewUserMaxObject(formValues));
-                  }}
-                >
-                  UMO
-                </Button>
               </Paper>
             </Modal>
           </div>
