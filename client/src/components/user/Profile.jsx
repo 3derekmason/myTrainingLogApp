@@ -58,7 +58,7 @@ const Profile = () => {
             to="/landing"
             style={{ textDecoration: "none", color: "#ffffff" }}
           >
-            <Typography element="h5" variant="h5">
+            <Typography className="appbarButton" element="h5" variant="h5">
               <FitnessCenterIcon /> MTLA
             </Typography>
           </Link>

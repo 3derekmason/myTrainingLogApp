@@ -86,7 +86,7 @@ const Landing = () => {
     <div>
       <AppBar position="static">
         <Toolbar className="appbar">
-          <Typography className="appbarButton" element="h5" variant="h5">
+          <Typography element="h5" variant="h5">
             <FitnessCenterIcon /> MTLA
           </Typography>
           <div>
