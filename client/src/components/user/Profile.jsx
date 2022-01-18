@@ -159,7 +159,7 @@ const Profile = () => {
       <div className="landingPage">
         <Paper className="loginContainer" elevation={8}>
           <div className="profilePageHead">
-            <Typography color="primary" element="h4" variant="subtitle2">
+            <Typography color="primary" element="h4" variant="h5">
               {currentUser?.username}
             </Typography>
             <div style={{ display: "flex", gap: "8px" }}>

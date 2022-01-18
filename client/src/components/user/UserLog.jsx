@@ -70,8 +70,16 @@ const UserLog = () => {
         <Paper className="userLogContainer" elevation={8}>
           <div
             className="userLogTopBar"
-            style={{ marginTop: "32px", textAlign: "center" }}
+            style={{
+              marginTop: "32px",
+              display: "flex",
+              justifyContent: "center",
+              gap: "32px",
+            }}
           >
+            <Link to="/landing" style={{ textDecoration: "none" }}>
+              <Button style={{ color: "#bcaaa4" }}>BACK TO HOME</Button>
+            </Link>
             <Typography
               element="h3"
               variant="h4"
@@ -80,6 +88,9 @@ const UserLog = () => {
             >
               {currentUser?.username}'s Log
             </Typography>
+            <Link to="/addworkout" style={{ textDecoration: "none" }}>
+              <Button color="secondary">ADD WORKOUT</Button>
+            </Link>
           </div>
 
           {/* Begin Triple Map */}
@@ -105,7 +116,7 @@ const UserLog = () => {
                     return (
                       <div className="logExercise" key={i}>
                         <Typography element="h6" variant="h6">
-                          {Object.keys(exercise)[0]}
+                          {Object.keys(exercise)[0].toLowerCase()}
                         </Typography>
                         <ul>
                           {exercise[Object.keys(exercise)[0]].sets.map(
