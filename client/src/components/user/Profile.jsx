@@ -3,11 +3,19 @@ import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import {
   AppBar,
+  Box,
   Button,
   Card,
   Container,
+  IconButton,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  Modal,
   Paper,
+  Select,
   Toolbar,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
@@ -25,6 +33,8 @@ const Profile = () => {
   const { currentUser, setCurrentUser, userWorkouts } =
     React.useContext(AppContext);
   const [openUserLog, setOpenUserLog] = useState(false);
+  const [maxModalOpen, setMaxModalOpen] = useState(false);
+  const maxModalClose = () => setMaxModalOpen(false);
   const [growCount, setGrowCount] = useState("16px");
   const [userMaxObject, setUserMaxObject] = useState({});
 
@@ -130,9 +140,14 @@ const Profile = () => {
                     <Typography element="h6" variant="subtitle1">
                       {lift.toUpperCase()}
                     </Typography>
-                    <Typography element="h5" variant="button">
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMaxModalOpen(true);
+                      }}
+                    >
                       0
-                    </Typography>
+                    </Button>
                   </Card>
                 );
               } else {
@@ -141,9 +156,14 @@ const Profile = () => {
                     <Typography element="h6" variant="subtitle1">
                       {lift.toUpperCase()}
                     </Typography>
-                    <Typography element="h5" variant="button">
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMaxModalOpen(true);
+                      }}
+                    >
                       {userMaxObject[lift]}
-                    </Typography>
+                    </Button>
                   </Card>
                 );
               }
@@ -156,6 +176,22 @@ const Profile = () => {
             >
               USER MAX OBJECT
             </Button>
+            <Modal
+              open={maxModalOpen}
+              onClose={maxModalClose}
+              aria-labelledby="newMaxModal"
+            >
+              <Box className="newMaxModal">
+                <Typography
+                  id="newMaxModalTitle"
+                  color="primary"
+                  variant="h6"
+                  component="h2"
+                >
+                  Congrats! Enter your new 1RM below:
+                </Typography>
+              </Box>
+            </Modal>
           </div>
         </Paper>
       </div>
