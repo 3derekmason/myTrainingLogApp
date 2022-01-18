@@ -176,6 +176,11 @@ const Profile = () => {
               <Button color="primary" variant="outlined">
                 This Week
               </Button>
+              <Link to="/addworkout" style={{ textDecoration: "none" }}>
+                <Button variant="outlined" color="secondary">
+                  ADD WORKOUT
+                </Button>
+              </Link>
             </div>
           </div>
           <Card className="userTotalWorkouts" style={{ background: "#efebe9" }}>
