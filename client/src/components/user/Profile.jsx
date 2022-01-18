@@ -56,16 +56,41 @@ const Profile = () => {
   };
 
   const buildNewUserMaxObject = (formValuesObject) => {
-    const newUserMaxObject = userMaxObject;
+    const newUserMaxObject = userMaxObject?.["bigFive"]
+      ? userMaxObject?.["bigFive"]
+      : defaultValues;
     bigFive.forEach((lift) => {
+      if (!userMaxObject?.["bigFive"]?.[lift]) {
+        newUserMaxObject[lift] = 0;
+      }
       if (formValues[lift] !== "") {
         newUserMaxObject[lift] = Number(formValues[lift]);
       }
-      if (!userMaxObject[lift]) {
-        newUserMaxObject[lift] = 0;
-      }
     });
     return newUserMaxObject;
+  };
+
+  const updateUserMaxCollection = (e) => {
+    e.preventDefault();
+    const newMaxCollection = buildNewUserMaxObject(formValues);
+    fetch("/api/profileMax/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: Number(newMaxCollection.userId),
+        newBigFive: newMaxCollection,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    maxModalClose();
   };
 
   useEffect(() => {
@@ -138,14 +163,7 @@ const Profile = () => {
               >
                 User Log
               </Button>
-              <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  console.log(userMaxObject);
-                }}
-              >
-                This Week
-              </Button>
+              <Button>This Week</Button>
             </div>
           </div>
           <Card className="userTotalWorkouts">
@@ -164,7 +182,7 @@ const Profile = () => {
               Track your 1 Rep Max for the Big 5:
             </Typography>
             {bigFive.map((lift, i) => {
-              if (!userMaxObject[lift]) {
+              if (!userMaxObject?.["bigFive"]?.[lift]) {
                 return (
                   <Card key={i}>
                     <Typography element="h6" variant="subtitle1">
@@ -192,7 +210,7 @@ const Profile = () => {
                         setMaxModalOpen(true);
                       }}
                     >
-                      {userMaxObject[lift]}
+                      {userMaxObject?.["bigFive"]?.[lift]}
                     </Button>
                   </Card>
                 );
@@ -221,21 +239,23 @@ const Profile = () => {
                         label={lift.toUpperCase()}
                         variant="standard"
                         value={formValues[lift]}
-                        placeholder={JSON.stringify(userMaxObject[lift]) || "0"}
+                        placeholder={
+                          JSON.stringify(userMaxObject?.["bigFive"]?.[lift]) ||
+                          "0"
+                        }
                         onChange={handleNewMaxChange}
                       />
                     </div>
                   );
                 })}
+                <Button onClick={updateUserMaxCollection}>UPDATE</Button>
                 <Button
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(userMaxObject);
-
                     console.log(buildNewUserMaxObject(formValues));
                   }}
                 >
-                  USER MAX OBJECT
+                  UMO
                 </Button>
               </Paper>
             </Modal>
