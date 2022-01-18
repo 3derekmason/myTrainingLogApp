@@ -19,6 +19,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 import ReactDatePicker from "react-datepicker";
 import AppContext from "../context.js";
 
@@ -188,19 +189,29 @@ const AddWorkout = () => {
       <div className="landingPage">
         <Card className="addWorkoutContainer">
           <div className="landingHead">
-            <Typography element="h3" color="primary" variant="h5">
-              Log a workout!
-            </Typography>
+            <Card
+              style={{
+                width: "95%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                background: "#efebe9",
+              }}
+            >
+              <Typography component="h3" color="primary" variant="h4">
+                LOG A WORKOUT!
+              </Typography>
+            </Card>
           </div>
           {/* * * * * * SET WORKOUT DATE * * * * */}
           <div className="addWorkoutForm">
             <ReactDatePicker
+              style={{ color: "#5d4037" }}
               selected={workoutDate}
               onChange={(date) => setWorkoutDate(date)}
             />
             {/* * * * * * SET WORKOUT TYPE * * * * */}
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="typeLabel">Type</InputLabel>
               <Select
                 labelId="typeLabel"
                 id="typeSelector"
@@ -215,20 +226,34 @@ const AddWorkout = () => {
                 <MenuItem value={"stability"}>Stability</MenuItem>
                 <MenuItem value={"cardio"}>Cardio</MenuItem>
               </Select>
-              <FormHelperText>Training Style</FormHelperText>
+              <FormHelperText>Choose Training Style</FormHelperText>
             </FormControl>
             {/* * * * * ADD EACH EXERCISE * * * * */}
             <div className="addExerciseHead">
-              <Typography element="h4" color="primary" variant="h5">
-                Exercises:
-              </Typography>
-              <Button
-                variant="text"
-                color="primary"
-                onClick={handleExerciseOpen}
+              <div>
+                <Typography element="h4" color="primary" variant="h5">
+                  Exercises:
+                </Typography>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                Add
-              </Button>
+                <Typography element="h4" color="primary" variant="caption">
+                  Add new:
+                </Typography>
+                <Button
+                  variant="text"
+                  className="addIcon"
+                  color="primary"
+                  onClick={handleExerciseOpen}
+                >
+                  <AddBoxIcon />
+                </Button>
+              </div>
             </div>
             <div className="newExerciseContainer">
               {exercises.map((exercise, i) => {
@@ -360,7 +385,12 @@ const AddWorkout = () => {
                 </form>
               </Box>
             </Modal>
-            <Button fullWidth color="secondary" onClick={addWorkoutToLog}>
+            <Button
+              fullWidth
+              variant="contained"
+              color="secondary"
+              onClick={addWorkoutToLog}
+            >
               ADD TO LOG
             </Button>
           </div>
