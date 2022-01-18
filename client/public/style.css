@@ -114,6 +114,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: row;
+  gap: 48px;
 }
 
 /* LastWorkout Component */

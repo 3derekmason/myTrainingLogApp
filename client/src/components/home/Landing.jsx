@@ -121,7 +121,6 @@ const Landing = () => {
                 display: "flex",
                 flexDirection: "row",
                 gap: "8px",
-                color: "#3e2723",
               }}
             >
               Welcome,{" "}
@@ -131,7 +130,7 @@ const Landing = () => {
               !
             </Typography>
             <Typography
-              style={{ marginTop: "16px", color: "#827717" }}
+              style={{ marginTop: "16px" }}
               element="h4"
               variant="caption"
             >
