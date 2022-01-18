@@ -193,7 +193,7 @@ const AddWorkout = () => {
               to="/landing"
               style={{ textDecoration: "none", marginBottom: "24px" }}
             >
-              <Button style={{ color: "#bcaaa4" }}>BACK TO HOME</Button>
+              <Button color="primary">BACK TO HOME</Button>
             </Link>
             <Card
               style={{
@@ -201,18 +201,17 @@ const AddWorkout = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                background: "#efebe9",
+                background: "#ededdd",
               }}
             >
-              <Typography component="h3" color="primary" variant="h4">
-                LOG A WORKOUT!
+              <Typography component="h3" variant="h5">
+                Log a workout!
               </Typography>
             </Card>
           </div>
           {/* * * * * * SET WORKOUT DATE * * * * */}
           <div className="addWorkoutForm">
             <ReactDatePicker
-              style={{ color: "#5d4037" }}
               selected={workoutDate}
               onChange={(date) => setWorkoutDate(date)}
             />
@@ -237,7 +236,7 @@ const AddWorkout = () => {
             {/* * * * * ADD EACH EXERCISE * * * * */}
             <div className="addExerciseHead">
               <div>
-                <Typography element="h4" color="primary" variant="h5">
+                <Typography element="h4" variant="h5">
                   Exercises:
                 </Typography>
               </div>
@@ -248,16 +247,11 @@ const AddWorkout = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography element="h4" color="primary" variant="caption">
-                  Add new:
-                </Typography>
-                <Button
-                  variant="text"
-                  className="addIcon"
-                  color="primary"
-                  onClick={handleExerciseOpen}
-                >
-                  <AddBoxIcon />
+                <Button className="addIcon" onClick={handleExerciseOpen}>
+                  <Typography element="h4" color="secondary" variant="caption">
+                    Add new:
+                  </Typography>
+                  <AddBoxIcon color="secondary" />
                 </Button>
               </div>
             </div>
@@ -289,11 +283,11 @@ const AddWorkout = () => {
               <Box className="addExerciseModal">
                 <Typography
                   id="exerciseModalTitle"
-                  color="primary"
+                  color="secondary"
                   variant="h6"
                   component="h2"
                 >
-                  Add Exercise
+                  Add New Exercise To Your Log
                 </Typography>
                 <form
                   style={{
@@ -376,7 +370,7 @@ const AddWorkout = () => {
                       />
                     </div>
 
-                    <Button color="primary" onClick={addNewSet}>
+                    <Button color="secondary" onClick={addNewSet}>
                       Add Set
                     </Button>
                   </Card>
@@ -392,12 +386,11 @@ const AddWorkout = () => {
               </Box>
             </Modal>
             <Button
-              fullWidth
               variant="contained"
               color="secondary"
               onClick={addWorkoutToLog}
             >
-              ADD TO LOG
+              LOG
             </Button>
           </div>
           <div className="addWorkoutFoot"></div>

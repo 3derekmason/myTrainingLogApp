@@ -64,7 +64,7 @@ const LastWorkout = () => {
 
   return (
     <div className="workoutSummary">
-      <Card className="lastWorkoutCard" style={{ background: "#E6E3D0" }}>
+      <Card className="lastWorkoutCard" style={{ background: "#ededdd" }}>
         <CardHeader
           title="Most Recent Workout:"
           subheader={lastWorkout[0]?.type.toUpperCase()}
