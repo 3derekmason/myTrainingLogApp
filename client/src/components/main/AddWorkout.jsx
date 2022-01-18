@@ -197,7 +197,7 @@ const AddWorkout = () => {
             </Link>
             <Card
               style={{
-                width: "95%",
+                width: "50%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -205,12 +205,15 @@ const AddWorkout = () => {
               }}
             >
               <Typography component="h3" variant="h5">
-                Log a workout!
+                Add a new workout!
               </Typography>
             </Card>
           </div>
           {/* * * * * * SET WORKOUT DATE * * * * */}
           <div className="addWorkoutForm">
+            <Typography element="p" variant="caption">
+              Select date and training style of workout:
+            </Typography>
             <ReactDatePicker
               selected={workoutDate}
               onChange={(date) => setWorkoutDate(date)}
@@ -288,7 +291,7 @@ const AddWorkout = () => {
                   variant="h6"
                   component="h2"
                 >
-                  Add New Exercise To Your Log
+                  Add a new exercise to workout
                 </Typography>
                 <form
                   style={{
@@ -339,13 +342,13 @@ const AddWorkout = () => {
                     {newExerciseSets.map((newSet, i) => {
                       return (
                         <div className="cardHead" key={i}>
-                          <Typography element="h4" variant="h5" color="primary">
+                          <Typography element="h4" variant="h5">
                             {i + 1}
                           </Typography>
-                          <Typography element="h4" variant="h5" color="primary">
+                          <Typography element="h4" variant="h5">
                             {newSet[0]}
                           </Typography>
-                          <Typography element="h4" variant="h5" color="primary">
+                          <Typography element="h4" variant="h5">
                             {newSet[1]}
                           </Typography>
                         </div>
@@ -390,6 +393,7 @@ const AddWorkout = () => {
               variant="contained"
               color="secondary"
               onClick={addWorkoutToLog}
+              style={{ width: "50%" }}
             >
               LOG
             </Button>

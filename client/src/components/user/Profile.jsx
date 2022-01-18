@@ -159,7 +159,7 @@ const Profile = () => {
       <div className="landingPage">
         <Paper className="loginContainer" elevation={8}>
           <div className="profilePageHead">
-            <Typography color="primary" element="h4" variant="h5">
+            <Typography element="h4" variant="h5">
               {currentUser?.username}
             </Typography>
             <div style={{ display: "flex", gap: "8px" }}>
@@ -190,7 +190,7 @@ const Profile = () => {
             >
               {userWorkouts?.length}
             </Typography>
-            <Typography color="primary" element="h5" variant="caption">
+            <Typography element="h5" variant="caption">
               workouts logged since joining.
             </Typography>
           </Card>
@@ -202,18 +202,18 @@ const Profile = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                background: "#795548",
+                borderBottom: "1px solid #517AAC",
               }}
             >
               <Typography
                 element="p"
                 variant="body1"
-                style={{ color: "#efebe9", fontVariant: "small-caps" }}
+                style={{ color: "#000000", fontVariant: "small-caps" }}
               >
                 track your 1RM:
               </Typography>
             </Card>
-            <Typography element="p" variant="caption" color="primary">
+            <Typography element="p" variant="caption">
               Click on any current one-rep max to edit.
             </Typography>
             <Card className="maxContainer" style={{ background: "#efebe9" }}>
@@ -225,7 +225,8 @@ const Profile = () => {
                         {lift.toUpperCase()}
                       </Typography>
                       <Button
-                        variant="outlined"
+                        color="secondary"
+                        variant="contained"
                         onClick={(e) => {
                           e.preventDefault();
                           setMaxModalOpen(true);
@@ -238,14 +239,11 @@ const Profile = () => {
                 } else {
                   return (
                     <div key={i} className="bigFiveRow">
-                      <Typography
-                        color="primary"
-                        element="h6"
-                        variant="subtitle1"
-                      >
+                      <Typography element="h6" variant="subtitle1">
                         {lift.toUpperCase()}
                       </Typography>
                       <Button
+                        color="secondary"
                         variant="contained"
                         onClick={(e) => {
                           e.preventDefault();
@@ -268,14 +266,13 @@ const Profile = () => {
               <Paper className="newMaxModalContainer">
                 <Typography
                   id="newMaxModalTitle"
-                  color="primary"
                   variant="h6"
                   component="h2"
                   style={{ marginTop: "24px" }}
                 >
                   Congrats, {currentUser.username}!
                 </Typography>
-                <Typography color="secondary" component="p" variant="caption">
+                <Typography component="p" variant="caption">
                   Enter your new 1RM below:
                 </Typography>
                 {bigFive.map((lift, i) => {
@@ -299,7 +296,7 @@ const Profile = () => {
                 <Button
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   onClick={updateUserMaxCollection}
                 >
                   UPDATE

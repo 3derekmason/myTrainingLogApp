@@ -67,15 +67,15 @@ body {
 }
 
 .appbar button {
-  color: #efebe9;
+  color: #ededed;
 }
 .appbarButton {
-  color: #efebe9;
+  color: #ededed;
   transition: 0.33s;
 }
 
 .appbarButton:hover {
-  color: #bf360c;
+  color: #ffffff;
   cursor: pointer;
   transition: 0.33s;
 }
@@ -170,11 +170,13 @@ body {
   gap: 16px;
 }
 .bigFiveRow Button {
-  color: #827717;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  color: #ededdd;
   transition: 0.5s;
 }
 .bigFiveRow Button:hover {
-  color: #bf360c;
+  color: #ffffff;
   transition: 0.5s;
 }
 
