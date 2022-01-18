@@ -148,6 +148,33 @@ body {
   gap: 16px;
 }
 
+.profileMax {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+}
+.maxContainer {
+  width: 95%;
+}
+.bigFiveRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+.bigFiveRow Button {
+  color: #827717;
+  transition: 0.5s;
+}
+.bigFiveRow Button:hover {
+  color: #bf360c;
+  transition: 0.5s;
+}
+
 /* UserLog Componenet */
 
 .userLogPage {

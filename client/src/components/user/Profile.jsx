@@ -186,44 +186,53 @@ const Profile = () => {
             </Typography>
           </Card>
           <div className="profileMax">
-            <Typography element="p" variant="subtitle1">
+            <Typography element="p" variant="body1">
               Track your 1 Rep Max for the Big 5:
             </Typography>
-            {bigFive.map((lift, i) => {
-              if (!userMaxObject?.["bigFive"]?.[lift]) {
-                return (
-                  <Card key={i}>
-                    <Typography element="h6" variant="subtitle1">
-                      {lift.toUpperCase()}
-                    </Typography>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setMaxModalOpen(true);
-                      }}
-                    >
-                      0
-                    </Button>
-                  </Card>
-                );
-              } else {
-                return (
-                  <Card key={i}>
-                    <Typography element="h6" variant="subtitle1">
-                      {lift.toUpperCase()}
-                    </Typography>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setMaxModalOpen(true);
-                      }}
-                    >
-                      {userMaxObject?.["bigFive"]?.[lift]}
-                    </Button>
-                  </Card>
-                );
-              }
-            })}
+            <Typography element="p" variant="caption">
+              Click on any current 1RM to edit.
+            </Typography>
+            <Card className="maxContainer">
+              {bigFive.map((lift, i) => {
+                if (!userMaxObject?.["bigFive"]?.[lift]) {
+                  return (
+                    <div key={i} className="bigFiveRow">
+                      <Typography element="h6" variant="subtitle1">
+                        {lift.toUpperCase()}
+                      </Typography>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMaxModalOpen(true);
+                        }}
+                      >
+                        0
+                      </Button>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={i} className="bigFiveRow">
+                      <Typography
+                        color="primary"
+                        element="h6"
+                        variant="subtitle1"
+                      >
+                        {lift.toUpperCase()}
+                      </Typography>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMaxModalOpen(true);
+                        }}
+                      >
+                        {userMaxObject?.["bigFive"]?.[lift]}
+                      </Button>
+                    </div>
+                  );
+                }
+              })}
+            </Card>
             <Modal
               open={maxModalOpen}
               onClose={maxModalClose}
