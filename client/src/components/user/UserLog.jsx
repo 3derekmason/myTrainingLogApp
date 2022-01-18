@@ -78,12 +78,11 @@ const UserLog = () => {
             }}
           >
             <Link to="/landing" style={{ textDecoration: "none" }}>
-              <Button style={{ color: "#bcaaa4" }}>BACK TO HOME</Button>
+              <Button color="primary">BACK TO HOME</Button>
             </Link>
             <Typography
               element="h3"
               variant="h4"
-              color="primary"
               style={{ marginBottom: "16px", letterSpacing: "2px" }}
             >
               {currentUser?.username}'s Log
@@ -98,17 +97,13 @@ const UserLog = () => {
             let splitDate = workout?.date?.split("T")[0];
             let formatDate = splitDate?.split("-");
             return (
-              <Card
-                className="workoutLogCard"
-                key={i}
-                style={{ color: "#3e2723" }}
-              >
+              <Card className="workoutLogCard" key={i}>
                 <div className="logCardHead">
-                  <Typography color="primary" element="h5" variant="h5">
-                    {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
-                  </Typography>
-                  <Typography color="primary" element="h5" variant="h4">
+                  <Typography color="secondary" element="h5" variant="h4">
                     {workout?.type}
+                  </Typography>
+                  <Typography element="h5" variant="h5">
+                    {`${formatDate[1]}-${formatDate[2]}-${formatDate[0]}`}
                   </Typography>
                 </div>
                 <div className="logCardBody">

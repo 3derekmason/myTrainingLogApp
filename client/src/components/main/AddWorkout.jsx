@@ -282,6 +282,7 @@ const AddWorkout = () => {
               {/* * * * * * * MODAL FOR EXERCISE * * * * * */}
               <Box className="addExerciseModal">
                 <Typography
+                  style={{ marginTop: "24px" }}
                   id="exerciseModalTitle"
                   color="secondary"
                   variant="h6"

@@ -216,14 +216,15 @@ body {
 }
 
 .workoutLogCard {
+  color: #000000;
   display: flex;
-  width: 100%;
+  width: 95%;
   flex-direction: column;
   font-variant: small-caps;
 }
 
 .logCardHead {
-  background: #bcaaa4;
+  background: #ededdd;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
