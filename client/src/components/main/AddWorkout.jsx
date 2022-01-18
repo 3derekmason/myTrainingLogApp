@@ -189,6 +189,12 @@ const AddWorkout = () => {
       <div className="landingPage">
         <Card className="addWorkoutContainer">
           <div className="landingHead">
+            <Link
+              to="/landing"
+              style={{ textDecoration: "none", marginBottom: "24px" }}
+            >
+              <Button style={{ color: "#bcaaa4" }}>BACK TO HOME</Button>
+            </Link>
             <Card
               style={{
                 width: "95%",

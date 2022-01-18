@@ -6,10 +6,13 @@ import App from "./components/App.jsx";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#5d4037",
+      main: "#6C7C64",
     },
     secondary: {
-      main: "#bf360c",
+      main: "#517AAC",
+    },
+    warning: {
+      main: "#9C6C58",
     },
   },
 });

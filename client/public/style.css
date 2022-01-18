@@ -167,6 +167,7 @@ body {
   justify-content: space-between;
   margin-left: 24px;
   margin-right: 24px;
+  gap: 16px;
 }
 .bigFiveRow Button {
   color: #827717;

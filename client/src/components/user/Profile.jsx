@@ -195,11 +195,26 @@ const Profile = () => {
             </Typography>
           </Card>
           <div className="profileMax">
-            <Typography element="p" variant="body1">
-              Track your 1 Rep Max for the Big 5:
-            </Typography>
-            <Typography element="p" variant="caption">
-              Click on any current 1RM to edit.
+            <Card
+              style={{
+                width: "95%",
+                height: "32px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                background: "#795548",
+              }}
+            >
+              <Typography
+                element="p"
+                variant="body1"
+                style={{ color: "#efebe9", fontVariant: "small-caps" }}
+              >
+                track your 1RM:
+              </Typography>
+            </Card>
+            <Typography element="p" variant="caption" color="primary">
+              Click on any current one-rep max to edit.
             </Typography>
             <Card className="maxContainer" style={{ background: "#efebe9" }}>
               {bigFive.map((lift, i) => {
@@ -210,6 +225,7 @@ const Profile = () => {
                         {lift.toUpperCase()}
                       </Typography>
                       <Button
+                        variant="outlined"
                         onClick={(e) => {
                           e.preventDefault();
                           setMaxModalOpen(true);
@@ -230,6 +246,7 @@ const Profile = () => {
                         {lift.toUpperCase()}
                       </Typography>
                       <Button
+                        variant="contained"
                         onClick={(e) => {
                           e.preventDefault();
                           setMaxModalOpen(true);
