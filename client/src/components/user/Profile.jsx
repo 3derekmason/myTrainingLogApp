@@ -28,6 +28,13 @@ const bigFive = [
   "overhead press",
   "pendlay row",
 ];
+const defaultValues = {
+  "back squat": "",
+  deadlift: "",
+  "bench press": "",
+  "overhead press": "",
+  "pendlay row": "",
+};
 
 const Profile = () => {
   const { currentUser, setCurrentUser, userWorkouts } =
@@ -37,6 +44,29 @@ const Profile = () => {
   const maxModalClose = () => setMaxModalOpen(false);
   const [growCount, setGrowCount] = useState("16px");
   const [userMaxObject, setUserMaxObject] = useState({});
+  const [formValues, setFormValues] = useState(defaultValues);
+
+  const handleNewMaxChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const buildNewUserMaxObject = (formValuesObject) => {
+    const newUserMaxObject = userMaxObject;
+    bigFive.forEach((lift) => {
+      if (formValues[lift] !== "") {
+        newUserMaxObject[lift] = Number(formValues[lift]);
+      }
+      if (!userMaxObject[lift]) {
+        newUserMaxObject[lift] = 0;
+      }
+    });
+    return newUserMaxObject;
+  };
 
   useEffect(() => {
     if (currentUser) {
@@ -168,20 +198,12 @@ const Profile = () => {
                 );
               }
             })}
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                console.log(userMaxObject);
-              }}
-            >
-              USER MAX OBJECT
-            </Button>
             <Modal
               open={maxModalOpen}
               onClose={maxModalClose}
               aria-labelledby="newMaxModal"
             >
-              <Box className="newMaxModal">
+              <Paper className="newMaxModal">
                 <Typography
                   id="newMaxModalTitle"
                   color="primary"
@@ -190,7 +212,32 @@ const Profile = () => {
                 >
                   Congrats! Enter your new 1RM below:
                 </Typography>
-              </Box>
+                {bigFive.map((lift, i) => {
+                  return (
+                    <div key={i}>
+                      <TextField
+                        id="newMaxWeight"
+                        name={lift}
+                        label={lift.toUpperCase()}
+                        variant="standard"
+                        value={formValues[lift]}
+                        placeholder={JSON.stringify(userMaxObject[lift]) || "0"}
+                        onChange={handleNewMaxChange}
+                      />
+                    </div>
+                  );
+                })}
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log(userMaxObject);
+
+                    console.log(buildNewUserMaxObject(formValues));
+                  }}
+                >
+                  USER MAX OBJECT
+                </Button>
+              </Paper>
             </Modal>
           </div>
         </Paper>
