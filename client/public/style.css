@@ -340,7 +340,7 @@ body {
   color: #3e2723;
 }
 .newExerciseContainer {
-  width: 50%;
+  width: 66%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -349,11 +349,11 @@ body {
 }
 
 .newExercise {
+  width: 100%;
+  height: 56px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 .setRW {

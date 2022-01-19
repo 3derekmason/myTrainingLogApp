@@ -197,7 +197,7 @@ const AddWorkout = () => {
             </Link>
             <Card
               style={{
-                width: "50%",
+                width: "66%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -216,7 +216,7 @@ const AddWorkout = () => {
             </Typography>
             <Card
               style={{
-                width: "50%",
+                width: "66%",
                 padding: "4px",
                 display: "flex",
                 justifyContent: "center",
@@ -230,7 +230,7 @@ const AddWorkout = () => {
               />
             </Card>
             {/* * * * * * SET WORKOUT TYPE * * * * */}
-            <FormControl style={{ width: "50%" }}>
+            <FormControl style={{ width: "66%" }}>
               <Select
                 labelId="typeLabel"
                 id="typeSelector"
@@ -269,21 +269,31 @@ const AddWorkout = () => {
                 </Button>
               </div>
             </div>
-            <Card className="newExerciseContainer">
+            <Card
+              className="newExerciseContainer"
+              style={{ background: "#ededdd" }}
+            >
               {exercises.map((exercise, i) => {
                 return (
                   <div className="newExercise" key={i}>
-                    <Typography element="h4" variant="button">
-                      {Object.keys(exercise)[0]}
+                    <Typography
+                      element="h4"
+                      variant="subtitle1"
+                      style={{ margin: "4px" }}
+                    >
+                      {Object.keys(exercise)[0].toUpperCase()}
                     </Typography>
-                    <Typography element="h4" variant="caption">
-                      {exercise[Object.keys(exercise)[0]].sets}
-                    </Typography>
-                    <Typography element="h4" variant="button">
-                      {JSON.stringify(
-                        exercise[Object.keys(exercise)[0]].superset
-                      )}
-                    </Typography>
+                    {exercise[Object.keys(exercise)[0]].sets.map((set) => {
+                      return (
+                        <Typography
+                          element="h5"
+                          variant="body2"
+                          style={{ marginRight: "2px" }}
+                        >
+                          {set[0]} @ {set[1]}
+                        </Typography>
+                      );
+                    })}
                   </div>
                 );
               })}
