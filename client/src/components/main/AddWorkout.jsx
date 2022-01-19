@@ -214,12 +214,23 @@ const AddWorkout = () => {
             <Typography element="p" variant="caption">
               Select date and training style of workout:
             </Typography>
-            <ReactDatePicker
-              selected={workoutDate}
-              onChange={(date) => setWorkoutDate(date)}
-            />
+            <Card
+              style={{
+                width: "50%",
+                padding: "4px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                background: "#ededdd",
+              }}
+            >
+              <ReactDatePicker
+                selected={workoutDate}
+                onChange={(date) => setWorkoutDate(date)}
+              />
+            </Card>
             {/* * * * * * SET WORKOUT TYPE * * * * */}
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl style={{ width: "50%" }}>
               <Select
                 labelId="typeLabel"
                 id="typeSelector"
@@ -304,7 +315,7 @@ const AddWorkout = () => {
                     id="exerciseName"
                     label="Exercise Name"
                     variant="standard"
-                    style={{ width: "90%" }}
+                    style={{ width: "80%" }}
                     value={newExerciseName}
                     onChange={(e) => {
                       e.preventDefault();
@@ -393,7 +404,7 @@ const AddWorkout = () => {
               variant="contained"
               color="secondary"
               onClick={addWorkoutToLog}
-              style={{ width: "50%" }}
+              style={{ width: "33%" }}
             >
               LOG
             </Button>
