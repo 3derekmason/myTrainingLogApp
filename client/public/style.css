@@ -131,6 +131,16 @@ body {
 }
 
 /* ProfilePage Component */
+.profilePage {
+  background: url(./assets/userLog.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
 .profilePageHead {
   width: 90%;
   margin-left: 24px;

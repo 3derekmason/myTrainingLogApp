@@ -156,10 +156,10 @@ const Profile = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <div className="landingPage">
+      <div className="profilePage">
         <Paper className="loginContainer" elevation={8}>
           <div className="profilePageHead">
-            <Typography element="h4" variant="h5">
+            <Typography element="h4" variant="h4">
               {currentUser?.username}
             </Typography>
             <div style={{ display: "flex", gap: "8px" }}>
@@ -283,6 +283,7 @@ const Profile = () => {
                         name={lift}
                         label={lift.toUpperCase()}
                         variant="outlined"
+                        style={{ width: "100%" }}
                         value={formValues[lift]}
                         placeholder={
                           JSON.stringify(userMaxObject?.["bigFive"]?.[lift]) ||
@@ -294,9 +295,9 @@ const Profile = () => {
                   );
                 })}
                 <Button
-                  fullWidth
                   variant="contained"
                   color="secondary"
+                  style={{ marginBottom: "16px" }}
                   onClick={updateUserMaxCollection}
                 >
                   UPDATE
