@@ -95,17 +95,26 @@ const LastWorkout = () => {
               const exerciseName = Object.keys(exercise)?.[0];
 
               return (
-                <div key={i}>
-                  <Typography element="h6" variant="button">
+                <div className="lastWorkoutExRow" key={i}>
+                  <Typography element="h6" variant="h6">
                     {exerciseName.toUpperCase()}
                   </Typography>
-                  {exercise[exerciseName]?.sets?.map((set, i) => {
-                    return (
-                      <Typography key={i} element="h6" variant="caption">
-                        {`${set[0]} at ${set[1]}`}
-                      </Typography>
-                    );
-                  })}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "16px",
+                    }}
+                  >
+                    {exercise[exerciseName]?.sets?.map((set, i) => {
+                      return (
+                        <Typography key={i} element="h6" variant="body2">
+                          {`${set[0]} at ${set[1]}`}
+                        </Typography>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })}

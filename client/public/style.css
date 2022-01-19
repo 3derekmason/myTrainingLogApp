@@ -130,6 +130,14 @@ body {
   margin-bottom: 40px;
 }
 
+.lastWorkoutExRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
 /* ProfilePage Component */
 .profilePage {
   background: url(./assets/userLog.jpg);
@@ -338,6 +346,22 @@ body {
   display: flex;
   flex-direction: column;
   color: #3e2723;
+}
+.newExerciseContainer {
+  width: 66%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.newExercise {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .setRW {
