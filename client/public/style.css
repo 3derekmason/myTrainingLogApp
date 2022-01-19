@@ -339,6 +339,22 @@ body {
   flex-direction: column;
   color: #3e2723;
 }
+.newExerciseContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.newExercise {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 4px;
+  margin-right: 4px;
+}
 
 .setRW {
   max-width: 3.5em;

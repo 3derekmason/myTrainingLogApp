@@ -269,10 +269,10 @@ const AddWorkout = () => {
                 </Button>
               </div>
             </div>
-            <div className="newExerciseContainer">
+            <Card className="newExerciseContainer">
               {exercises.map((exercise, i) => {
                 return (
-                  <Card className="newExercise" key={i}>
+                  <div className="newExercise" key={i}>
                     <Typography element="h4" variant="button">
                       {Object.keys(exercise)[0]}
                     </Typography>
@@ -284,10 +284,10 @@ const AddWorkout = () => {
                         exercise[Object.keys(exercise)[0]].superset
                       )}
                     </Typography>
-                  </Card>
+                  </div>
                 );
               })}
-            </div>
+            </Card>
             <Modal
               open={exerciseOpen}
               onClose={handleExerciseClose}
