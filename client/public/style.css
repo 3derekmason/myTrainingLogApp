@@ -130,6 +130,14 @@ body {
   margin-bottom: 40px;
 }
 
+.lastWorkoutExRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
 /* ProfilePage Component */
 .profilePage {
   background: url(./assets/userLog.jpg);
