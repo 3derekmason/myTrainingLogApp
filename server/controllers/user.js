@@ -33,11 +33,11 @@ const User = mongoose.model("User", UserSchema, "users");
 
 module.exports = {
   addNewUser: async (req, res) => {
-    // const previous = await User.find({}).sort({ userId: -1 }).limit(1);
-    // const { userId } = 0;
+    const previous = await User.find({}).sort({ userId: -1 }).limit(1);
+    const { userId } = previous;
     const doc = new User();
     doc._id = mongoose.Types.ObjectId();
-    doc.userId = 1;
+    doc.userId = previous + 1;
     doc.username = req.body.username;
     doc.password = req.body.password;
     doc.save();
