@@ -67,7 +67,7 @@ const LastWorkout = () => {
       <Card className="lastWorkoutCard" style={{ background: "#ededdd" }}>
         <CardHeader
           title="Most Recent Workout:"
-          subheader={lastWorkout[0]?.type.toUpperCase()}
+          subheader={lastWorkout[0]?.type?.toUpperCase()}
         />
 
         <CardContent>
@@ -92,7 +92,10 @@ const LastWorkout = () => {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {lastWorkout[0]?.exercises?.map((exercise, i) => {
-              const exerciseName = Object.keys(exercise)?.[0];
+              if (!exercise) {
+                return;
+              }
+              const exerciseName = Object.keys(exercise)[0];
 
               return (
                 <div className="lastWorkoutExRow" key={i}>
