@@ -4,6 +4,8 @@ const router = require("./routes");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+const uri = process.env.MONGODB_URI;
+
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/public")));
