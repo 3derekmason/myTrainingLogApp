@@ -76,7 +76,7 @@ const LastWorkout = () => {
           </Typography>
           <Typography color="secondary" component="p" variant="h6">
             On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}
-            {Object.keys(lastWorkout?.[0].exercises).length} exercises
+            {Object.keys(lastWorkout?.[0]?.exercises).length} exercises
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
