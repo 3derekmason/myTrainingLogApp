@@ -91,7 +91,7 @@ const LastWorkout = () => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            {lastWorkout[0]?.exercises.map((exercise, i) => {
+            {lastWorkout[0]?.exercises?.map((exercise, i) => {
               const exerciseName = Object.keys(exercise)?.[0];
 
               return (
