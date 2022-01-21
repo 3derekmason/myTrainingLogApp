@@ -58,9 +58,6 @@ const LastWorkout = () => {
       </div>
     );
   }
-  if (!lastWorkout[0]?.date) {
-    return <Paper>Loading...</Paper>;
-  }
 
   return (
     <div className="workoutSummary">

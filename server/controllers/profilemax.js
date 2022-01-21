@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/mtla", {
+//   useNewUrlParser: true,
+//   useFindAndModify: false,
+//   useUnifiedTopology: true,
+// });
 
 const ProfileMaxSchema = mongoose.Schema({
   _id: mongoose.ObjectId,

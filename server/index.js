@@ -6,6 +6,12 @@ const bcrypt = require("bcryptjs");
 
 const uri = process.env.MONGODB_URI;
 
+mongoose.connect(uri || "mongodb://localhost:27017/mtla", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/public")));
