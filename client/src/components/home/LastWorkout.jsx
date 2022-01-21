@@ -75,8 +75,8 @@ const LastWorkout = () => {
             Last workout summary:
           </Typography>
           <Typography color="secondary" component="p" variant="h6">
-            On <em>{buildDate(lastWorkout?.[0]?.date)}</em> you logged{" "}
-            {Object.keys(lastWorkout?.[0]?.exercises).length} exercises
+            On <em>{buildDate(lastWorkout[0]?.date)}</em> you logged{" "}
+            {Object.keys(lastWorkout[0]?.exercises).length} exercises
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -95,7 +95,7 @@ const LastWorkout = () => {
               if (!exercise) {
                 return;
               }
-              const exerciseName = Object.keys(exercise)[0];
+              const exerciseName = exercise ? Object.keys(exercise)[0] : "none";
 
               return (
                 <div className="lastWorkoutExRow" key={i}>
