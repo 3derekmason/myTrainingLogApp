@@ -41,7 +41,7 @@ const LastWorkout = () => {
   if (!currentUser || currentUser.message) {
     return <Navigate to="/" />;
   }
-  if (!lastWorkout || lastWorkout.length === 0 || !lastWorkout[0].date) {
+  if (!lastWorkout || lastWorkout.length === 0 || !lastWorkout[0]) {
     return (
       <div className="workoutSummary">
         <Card className="lastWorkoutCard">
