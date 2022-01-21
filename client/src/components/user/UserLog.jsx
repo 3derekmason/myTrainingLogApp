@@ -27,10 +27,8 @@ const UserLog = () => {
   if (navigateProfile) {
     return <Navigate to="/profile" />;
   }
-  if (!userWorkouts) {
-    return (
-      <div>Something went wrong, or you have not logged any workouts!</div>
-    );
+  if (!userWorkouts[0] || !userWorkouts) {
+    return <div>No workouts logged yet!</div>;
   }
   return (
     <div>
