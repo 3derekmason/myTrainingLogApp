@@ -17,6 +17,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AppContext from "../context.js";
 
 const buildDate = (dateString) => {
+  if (!dateString) {
+    return;
+  }
   const splitDate = dateString.split("T");
   const splitDigits = splitDate[0].split("-");
   const month = splitDigits[1];
